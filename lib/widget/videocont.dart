@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:hooker_cooker/provider/boshlashprovider.dart';
+import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
+// BoshlashProvider joylashgan faylni import qilasiz:
+// import 'boshlash_provider.dart';
 
-class Videocont extends StatefulWidget {
+class Videocont extends StatelessWidget {
   final dynamic model;
   const Videocont({super.key, required this.model});
 
   @override
-  State<Videocont> createState() => _VideocontState();
-}
-
-class _VideocontState extends State<Videocont> {
-  @override
   Widget build(BuildContext context) {
-    final String? imageUrl = widget.model?.videoUrl;
+    // Endi BoshlashProvider'ni chaqirib olamiz
+    final provider = context.watch<BoshlashProvider>();
+
+    final String? imageUrl = model?.videoUrl;
     final bool imagebor = imageUrl != null && imageUrl.isNotEmpty;
+
     return Stack(
       children: [
         Container(
@@ -56,7 +59,7 @@ class _VideocontState extends State<Videocont> {
                   onTap: () => Navigator.pop(context),
                   child: CircleAvatar(
                     backgroundColor: Cols.orange,
-                    child: Icon(Icons.arrow_back_ios_new),
+                    child: const Icon(Icons.arrow_back_ios_new),
                   ),
                 ),
                 const Spacer(),
@@ -67,24 +70,22 @@ class _VideocontState extends State<Videocont> {
                   },
                   child: CircleAvatar(
                     backgroundColor: Cols.orange,
-                    child: Icon(Icons.share),
+                    child: const Icon(Icons.share),
                   ),
                 ),
                 const SizedBox(width: 8),
+                // Yurak tugmasi (BoshlashProvider orqali ishlaydi)
                 GestureDetector(
                   onTap: () {
-                    widget.model.yurak = !widget.model.yurak;
-                    setState(() {});
+                    provider.yurakniBoshqarish(model);
                   },
                   child: CircleAvatar(
                     backgroundColor: Cols.orange,
                     child: Icon(
-                      widget.model.yurak == true
+                      model.yurak == true
                           ? Icons.favorite
                           : Icons.favorite_border,
-                      color: widget.model.yurak == true
-                          ? Cols.danger
-                          : Cols.white,
+                      color: model.yurak == true ? Cols.danger : Cols.white,
                     ),
                   ),
                 ),
@@ -95,23 +96,19 @@ class _VideocontState extends State<Videocont> {
         Positioned(
           bottom: 12,
           left: 20,
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Cols.orange,
                 ),
-                child: Text(
-                  widget.model.turi,
-                  style: TextStyle(color: Cols.white),
-                ),
+                child: Text(model.turi, style: TextStyle(color: Cols.white)),
               ),
               Text(
-                widget.model.nomi,
+                model.nomi,
                 style: TextStyle(
                   color: Cols.white,
                   fontWeight: FontWeight.bold,

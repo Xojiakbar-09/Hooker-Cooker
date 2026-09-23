@@ -1,49 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooker_cooker/provider/loginpovider.dart';
+import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
 import 'package:hooker_cooker/gen/assets.gen.dart';
 
-class Customtextfield extends StatefulWidget {
-  final GlobalKey<FormState> formKey;
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
-
-  const Customtextfield({
-    super.key,
-    required this.formKey,
-    required this.emailController,
-    required this.passwordController,
-  });
-
-  @override
-  State<Customtextfield> createState() => _CustomtextfieldState();
-}
-
-class _CustomtextfieldState extends State<Customtextfield> {
-  bool isObuscure = true;
+class Customtextfield extends StatelessWidget {
+  const Customtextfield({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<LoginProvider>();
     return Form(
-      key: widget.formKey,
+      key: provider.formKey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // 1. EMAIL MAYDONI
           TextFormField(
-            controller: widget.emailController,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Email manzilini kiriting';
-              }
-              String pattern =
-                  r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
-              RegExp regex = RegExp(pattern);
-              if (!regex.hasMatch(value.trim())) {
-                return 'Notoʻgʻri email formati';
-              }
-              return null;
-            },
+            controller: provider.emailController,
+            validator: provider.validateEmail,
             keyboardType: TextInputType.emailAddress,
             cursorColor: Cols.dark,
             cursorErrorColor: Cols.white,
@@ -71,21 +46,13 @@ class _CustomtextfieldState extends State<Customtextfield> {
 
           // 2. PAROL MAYDONI
           TextFormField(
-            controller: widget.passwordController,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Parolni kiriting';
-              }
-              if (value.length < 8) {
-                return 'Parol kamida 8 ta belgidan iborat boʻlishi kerak';
-              }
-              return null;
-            },
+            controller: provider.passwordController,
+            validator: provider.validatePassword,
             cursorErrorColor: Cols.dark,
             cursorColor: Cols.white,
             cursorWidth: 1,
             cursorHeight: 20,
-            obscureText: isObuscure,
+            obscureText: provider.isObscure,
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
               isDense: true,
@@ -102,15 +69,11 @@ class _CustomtextfieldState extends State<Customtextfield> {
                   minimumSize: Size.zero,
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-                onPressed: () {
-                  setState(() {
-                    isObuscure = !isObuscure;
-                  });
-                },
+                onPressed: provider.toggleObscure,
                 child: Padding(
                   padding: const EdgeInsets.only(right: 12.0),
                   child: Text(
-                    isObuscure ? "Ko'rish" : 'Yashirish',
+                    provider.isObscure ? "Ko'rish" : 'Yashirish',
                     style: const TextStyle(
                       fontSize: 13,
                       color: Colors.deepOrange,

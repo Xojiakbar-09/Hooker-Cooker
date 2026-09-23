@@ -1,38 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hooker_cooker/provider/retseptprovider.dart';
+import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
+// RetseptProvider joylashgan faylni import qilasiz:
+// import 'retsept_provider.dart';
 
-class IngredientItem {
-  String name;
-  String amount;
-  IngredientItem({required this.name, required this.amount});
-}
-
-class MasalliqlarCard extends StatefulWidget {
+class MasalliqlarCard extends StatelessWidget {
   const MasalliqlarCard({super.key});
 
   @override
-  State<MasalliqlarCard> createState() => _MasalliqlarCardState();
-}
-
-class _MasalliqlarCardState extends State<MasalliqlarCard> {
-  // Controllerlar qo'shildi
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _amountController = TextEditingController();
-
-  List<IngredientItem> ingredients = [
-    IngredientItem(name: "Shampinyon qo'ziqorini", amount: "400 gr"),
-    IngredientItem(name: "30% li maxsus qaymoq", amount: "200 ml"),
-  ];
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _amountController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final provider = context.watch<RetseptProvider>();
+
     return Column(
       children: [
         Container(
@@ -54,7 +33,7 @@ class _MasalliqlarCardState extends State<MasalliqlarCard> {
               ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: ingredients.length,
+                itemCount: provider.ingredients.length,
                 separatorBuilder: (context, index) => const Divider(
                   height: 1,
                   color: Color(0xFFEEEEEE),
@@ -62,6 +41,7 @@ class _MasalliqlarCardState extends State<MasalliqlarCard> {
                   endIndent: 16,
                 ),
                 itemBuilder: (context, index) {
+                  final item = provider.ingredients[index];
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -80,7 +60,7 @@ class _MasalliqlarCardState extends State<MasalliqlarCard> {
                         const SizedBox(width: 12),
                         Expanded(
                           child: Text(
-                            ingredients[index].name,
+                            item.name,
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -89,7 +69,7 @@ class _MasalliqlarCardState extends State<MasalliqlarCard> {
                           ),
                         ),
                         Text(
-                          ingredients[index].amount,
+                          item.amount,
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -112,7 +92,7 @@ class _MasalliqlarCardState extends State<MasalliqlarCard> {
                     children: [
                       Expanded(
                         child: TextField(
-                          controller: _nameController, // Kontroller ulandi
+                          controller: provider.nameController,
                           keyboardType: TextInputType.name,
                           cursorColor: Cols.dark,
                           cursorWidth: 1,
@@ -162,7 +142,7 @@ class _MasalliqlarCardState extends State<MasalliqlarCard> {
 
                       Expanded(
                         child: TextField(
-                          controller: _amountController, // Kontroller ulandi
+                          controller: provider.amountController,
                           keyboardType: TextInputType.text,
                           cursorColor: Cols.dark,
                           cursorWidth: 1,
@@ -216,20 +196,7 @@ class _MasalliqlarCardState extends State<MasalliqlarCard> {
           children: [
             ElevatedButton(
               onPressed: () {
-                // Ma'lumot kiritilganini tekshirib, ro'yxatga qo'shish
-                if (_nameController.text.trim().isNotEmpty &&
-                    _amountController.text.trim().isNotEmpty) {
-                  setState(() {
-                    ingredients.add(
-                      IngredientItem(
-                        name: _nameController.text.trim(),
-                        amount: _amountController.text.trim(),
-                      ),
-                    );
-                    _nameController.clear();
-                    _amountController.clear();
-                  });
-                }
+                provider.masalliqQoshish();
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Cols.primery,

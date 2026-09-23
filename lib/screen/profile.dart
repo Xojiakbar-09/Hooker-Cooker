@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooker_cooker/provider/loginpovider.dart';
+import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
 import 'package:hooker_cooker/gen/assets.gen.dart';
-import 'package:hooker_cooker/screen/login.dart';
 import 'package:hooker_cooker/widget/customcard.dart';
 import 'package:hooker_cooker/widget/customdropdawn.dart';
+// LoginProvider faylini import qilasiz:
+// import 'login_provider.dart';
 
-class Profile extends StatefulWidget {
+class Profile extends StatelessWidget {
   const Profile({super.key});
 
   @override
-  State<Profile> createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  @override
   Widget build(BuildContext context) {
+    // Provider'ni chaqirib olamiz
+    final provider = context.watch<LoginProvider>();
+
     return Scaffold(
       backgroundColor: Cols.canvas,
-      appBar: AppBar(
-         backgroundColor: Cols.canvas,
-      ),
+      appBar: AppBar(backgroundColor: Cols.canvas),
       body: Column(
         children: [
           Padding(
@@ -30,7 +29,7 @@ class _ProfileState extends State<Profile> {
                 children: [
                   Customcard(
                     widget: Switch.adaptive(
-                      value: isdark,
+                      value: provider.isDark,
                       // ignore: deprecated_member_use
                       activeColor: Colors.white,
                       activeTrackColor: const Color(0xFFFF5200),
@@ -40,9 +39,7 @@ class _ProfileState extends State<Profile> {
                         Colors.transparent,
                       ),
                       onChanged: (val) {
-                        setState(() {
-                          isdark = val;
-                        });
+                        provider.toggleDark(val);
                       },
                     ),
                     title: 'Qora mavzu',
@@ -59,7 +56,7 @@ class _ProfileState extends State<Profile> {
                   ),
                   Customcard(
                     widget: Switch.adaptive(
-                      value: isbell,
+                      value: provider.isBell,
                       // ignore: deprecated_member_use
                       activeColor: Colors.white,
                       activeTrackColor: const Color(0xFFFF5200),
@@ -69,9 +66,7 @@ class _ProfileState extends State<Profile> {
                         Colors.transparent,
                       ),
                       onChanged: (val) {
-                        setState(() {
-                          isbell = val;
-                        });
+                        provider.toggleBell(val);
                       },
                     ),
                     title: "Tayyor bo'lish xabari",

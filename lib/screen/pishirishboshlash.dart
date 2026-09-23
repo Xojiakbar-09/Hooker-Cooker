@@ -5,16 +5,13 @@ import 'package:hooker_cooker/widget/masaliqlartab.dart';
 import 'package:hooker_cooker/widget/pisheleventbuten.dart';
 import 'package:hooker_cooker/widget/pishirishmasaliqlari.dart';
 import 'package:hooker_cooker/widget/videocont.dart';
+// BoshlashProvider faylini import qilasiz:
+// import 'boshlash_provider.dart';
 
-class Pishirishniboshlash extends StatefulWidget {
+class Pishirishniboshlash extends StatelessWidget {
   final dynamic model;
   const Pishirishniboshlash({super.key, required this.model});
 
-  @override
-  State<Pishirishniboshlash> createState() => _PishirishboshlashState();
-}
-
-class _PishirishboshlashState extends State<Pishirishniboshlash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,20 +19,20 @@ class _PishirishboshlashState extends State<Pishirishniboshlash> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Videocont(model: widget.model),
+            Videocont(model: model),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Pishirishmasaliqlari(
-                    vaqt: widget.model.daqiqa.toString(),
-                    daraja: widget.model.daraja,
-                    porsiya: widget.model.insonga.toString(),
+                    vaqt: model.daqiqa.toString(),
+                    daraja: model.daraja,
+                    porsiya: model.insonga.toString(),
                   ),
-                  SizedBox(height: 20),
-                  Masaliqlartab(model: widget.model),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 20),
+                  Masaliqlartab(model: model),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),
@@ -46,9 +43,7 @@ class _PishirishboshlashState extends State<Pishirishniboshlash> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => Tayyorlash(model: widget.model),
-            ),
+            MaterialPageRoute(builder: (context) => Tayyorlash(model: model)),
           );
         },
       ),

@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooker_cooker/provider/saqlanganprovider.dart';
+import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
 import 'package:hooker_cooker/gen/assets.gen.dart';
-import 'package:hooker_cooker/mock/mockdata.dart';
+// SaqlanganProvider faylini import qilasiz:
+// import 'saqlangan_provider.dart';
 
-class Saqlangan extends StatefulWidget {
+class Saqlangan extends StatelessWidget {
   const Saqlangan({super.key});
 
   @override
-  State<Saqlangan> createState() => _SaqlanganState();
-}
-
-class _SaqlanganState extends State<Saqlangan> {
-  @override
   Widget build(BuildContext context) {
-    // Har safar build bo'lganda mock datadan yuragi true bo'lganlarni filter qiladi
-    final favourite = OvqatMock.mockOvqatlar
-        .where((item) => item.yurak == true)
-        .toList();
+    // Provider'ni chaqirib olamiz
+    final provider = context.watch<SaqlanganProvider>();
+    final favourite = provider.favouriteList;
 
     return Scaffold(
       appBar: AppBar(title: const Text("Saqlanganlar"), centerTitle: true),
@@ -101,9 +98,7 @@ class _SaqlanganState extends State<Saqlangan> {
                             right: 8,
                             child: GestureDetector(
                               onTap: () {
-                                setState(() {
-                                  ovqat.yurak = !ovqat.yurak;
-                                });
+                                provider.yurakniOzgartirish(ovqat);
                               },
                               child: CircleAvatar(
                                 backgroundColor: Colors.white,

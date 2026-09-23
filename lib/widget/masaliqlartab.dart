@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:hooker_cooker/provider/boshlashprovider.dart';
+import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
+// BoshlashProvider faylini import qilasiz:
+// import 'boshlash_provider.dart';
 
-class Masaliqlartab extends StatefulWidget {
+class Masaliqlartab extends StatelessWidget {
   final dynamic model;
   const Masaliqlartab({super.key, required this.model});
 
   @override
-  State<Masaliqlartab> createState() => _MasalliqlarTabViewState();
-}
-
-class _MasalliqlarTabViewState extends State<Masaliqlartab> {
-  int _selectedIndex = 0; 
-
-  @override
   Widget build(BuildContext context) {
-    final List masalliqlarList = widget.model?.masalliqlar ?? [];
-    final List qadamlarList = widget.model?.qadamlar ?? [];
+    final provider = context.watch<BoshlashProvider>();
+
+    final List masalliqlarList = model?.masalliqlar ?? [];
+    final List qadamlarList = model?.qadamlar ?? [];
 
     return Column(
       children: [
@@ -29,12 +28,14 @@ class _MasalliqlarTabViewState extends State<Masaliqlartab> {
             children: [
               Expanded(
                 child: _buildTabButton(
+                  provider,
                   title: "Masalliqlar (${masalliqlarList.length})",
                   index: 0,
                 ),
               ),
               Expanded(
                 child: _buildTabButton(
+                  provider,
                   title: "Qadamlar (${qadamlarList.length})",
                   index: 1,
                 ),
@@ -44,20 +45,22 @@ class _MasalliqlarTabViewState extends State<Masaliqlartab> {
         ),
         const SizedBox(height: 16),
 
-        _selectedIndex == 0
-            ? _buildIngredientsCard(masalliqlarList)
+        provider.selectedIndex == 0
+            ? _buildIngredientsCard(provider, masalliqlarList)
             : _buildStepsCard(qadamlarList),
       ],
     );
   }
 
-  Widget _buildTabButton({required String title, required int index}) {
-    bool isSelected = _selectedIndex == index;
+  Widget _buildTabButton(
+    BoshlashProvider provider, {
+    required String title,
+    required int index,
+  }) {
+    bool isSelected = provider.selectedIndex == index;
     return GestureDetector(
       onTap: () {
-        setState(() {
-          _selectedIndex = index;
-        });
+        provider.changeTab(index);
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
@@ -89,8 +92,7 @@ class _MasalliqlarTabViewState extends State<Masaliqlartab> {
     );
   }
 
-  // Masalliqlar ro'yxati kartochkasi (TUZATILGAN QISMI)
-  Widget _buildIngredientsCard(List items) {
+  Widget _buildIngredientsCard(BoshlashProvider provider, List items) {
     if (items.isEmpty) {
       return const Center(child: Text("Masalliqlar kiritilmagan"));
     }
@@ -107,7 +109,6 @@ class _MasalliqlarTabViewState extends State<Masaliqlartab> {
           ),
         ],
       ),
-      // Material vidjeti qo'shildi — bu ListTile splash va fon muammosini hal qiladi
       child: Material(
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(20),
@@ -127,9 +128,7 @@ class _MasalliqlarTabViewState extends State<Masaliqlartab> {
 
             return ListTile(
               onTap: () {
-                setState(() {
-                  item.isChecked = !item.isChecked;
-                });
+                provider.toggleCheck(item);
               },
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 16,
@@ -188,7 +187,7 @@ class _MasalliqlarTabViewState extends State<Masaliqlartab> {
       itemBuilder: (context, index) {
         return Card(
           child: Padding(
-            padding: const EdgeInsets.all( 12),
+            padding: const EdgeInsets.all(12),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

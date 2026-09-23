@@ -1,52 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:hooker_cooker/provider/tayyorlash.dart';
+import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
-import 'package:hooker_cooker/screen/homepage.dart';
+import 'package:hooker_cooker/screen/mainscrren.dart';
 import 'package:hooker_cooker/widget/taymer.dart';
 import 'package:hooker_cooker/widget/tayorqadam.dart';
 import 'package:hooker_cooker/widget/tayyorlashappbar.dart';
 import 'package:hooker_cooker/widget/tugaganda.dart';
+// TayyorlashProvider faylini import qilasiz:
+// import 'tayyorlash_provider.dart';
 
-class Tayyorlash extends StatefulWidget {
+class Tayyorlash extends StatelessWidget {
   final dynamic model;
   const Tayyorlash({super.key, required this.model});
 
   @override
-  State<Tayyorlash> createState() => _TayyorlashState();
-}
-
-class _TayyorlashState extends State<Tayyorlash> {
-  final PageController _pageController = PageController();
-  int correctpage = 0;
-
-  @override
-  void dispose() {
-    _pageController.dispose(); // Xotirani tozalash
-    super.dispose();
-  }
-
-  // Keyingi sahifaga o'tish funksiyasi
-  void _nextPage(int totalSteps) {
-    if (correctpage < totalSteps - 1) {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
-
-  // Oldingi sahifaga o'tish funksiyasi
-  void _previousPage() {
-    if (correctpage > 0) {
-      _pageController.previousPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final List qadamlarList = widget.model?.qadamlar ?? [];
+    // Provider'ni chaqirib olamiz
+    final provider = context.watch<TayyorlashProvider>();
+    final List qadamlarList = model?.qadamlar ?? [];
 
     return Scaffold(
       backgroundColor: Cols.dark,
@@ -58,7 +30,7 @@ class _TayyorlashState extends State<Tayyorlash> {
             const SizedBox(height: 20),
 
             Tayorqadam(
-              currentStep: correctpage + 1,
+              currentStep: provider.correctPage + 1,
               totalSteps: qadamlarList.isEmpty ? 1 : qadamlarList.length,
               stepTitle: "JARAYON",
             ),
@@ -67,23 +39,17 @@ class _TayyorlashState extends State<Tayyorlash> {
 
             Expanded(
               child: PageView.builder(
-                physics:
-                    const NeverScrollableScrollPhysics(), // Qo'lda surishni bloklash (agar xohlasangiz ochishingiz mumkin)
-                controller: _pageController,
+                physics: const NeverScrollableScrollPhysics(),
+                controller: provider.pageController,
                 itemCount: qadamlarList.length,
                 onPageChanged: (int index) {
-                  setState(() {
-                    correctpage = index;
-                  });
+                  provider.onPageChanged(index);
                 },
                 itemBuilder: (context, index) {
                   return Taymer(
                     qadamMatni: qadamlarList[index].toString(),
-
                     tugaganda: () {
-                      if (correctpage < qadamlarList.length - 1) {
-                        _nextPage(qadamlarList.length);
-                      } else {
+                      provider.nextPage(qadamlarList.length, context, () {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
@@ -91,55 +57,21 @@ class _TayyorlashState extends State<Tayyorlash> {
                           ),
                           (Route<dynamic> route) => false,
                         );
-                      }
+                      });
                     },
                   );
                 },
               ),
             ),
 
-            // Pastki boshqaruv tugmalari
             Padding(
               padding: const EdgeInsets.only(bottom: 50),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Oldingi qadam tugmasi (chapda)
                   ElevatedButton(
                     onPressed: () {
-                      if (correctpage > 0) {
-                        _previousPage();
-                      } else {
-                        Navigator.pop(context);
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Cols.primery,
-                      foregroundColor: Cols.white,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 10,
-                      ),
-                    ),
-                    child: Text(correctpage == 0 ? 'Chiqish' : 'Oldingi qadam'),
-                  ),
-
-                  // Keyingi qadam tugmasi (o'ngda)
-                  ElevatedButton(
-                    onPressed: () {
-                      if (correctpage < qadamlarList.length - 1) {
-                        _nextPage(qadamlarList.length);
-                      } else {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => Homepage()),
-                          (Route<dynamic> route) => false,
-                        );
-                      }
+                      provider.previousPage(context);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Cols.primery,
@@ -154,7 +86,34 @@ class _TayyorlashState extends State<Tayyorlash> {
                       ),
                     ),
                     child: Text(
-                      correctpage == qadamlarList.length - 1
+                      provider.correctPage == 0 ? 'Chiqish' : 'Oldingi qadam',
+                    ),
+                  ),
+
+                  ElevatedButton(
+                    onPressed: () {
+                      provider.nextPage(qadamlarList.length, context, () {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => MainScreen()),
+                          (Route<dynamic> route) => false,
+                        );
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Cols.primery,
+                      foregroundColor: Cols.white,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
+                    ),
+                    child: Text(
+                      provider.correctPage == qadamlarList.length - 1
                           ? 'Tugatish'
                           : 'Keyingi qadam',
                     ),

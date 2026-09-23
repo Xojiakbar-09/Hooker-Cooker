@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
 
 class Stepqoshish extends StatelessWidget {
-  final TextEditingController cantroller;
+  final TextEditingController controller;
   final Function(String) onAdd;
 
   const Stepqoshish({
     super.key, 
-    required this.cantroller, 
+    required this.controller, 
     required this.onAdd,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -23,7 +22,7 @@ class Stepqoshish extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 10,
-            offset: Offset(0, 4),
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -31,17 +30,17 @@ class Stepqoshish extends StatelessWidget {
         children: [
           Expanded(
             child: TextField(
-              controller: cantroller,
+              controller: controller,
               keyboardType: TextInputType.text,
               cursorColor: Cols.dark,
               cursorWidth: 1,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: Colors.black87,
               ),
               textInputAction: TextInputAction.done,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 hintText: "Qadam qo'shish...",
                 hintStyle: TextStyle(
@@ -52,13 +51,13 @@ class Stepqoshish extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           ElevatedButton(
             onPressed: () {
-              final text = cantroller.text.trim();
+              final text = controller.text.trim();
               if (text.isNotEmpty) {
                 onAdd(text); 
-                cantroller.clear(); 
+                controller.clear(); 
               }
             },
             style: ElevatedButton.styleFrom(
@@ -68,9 +67,9 @@ class Stepqoshish extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             ),
-            child: Icon(Icons.add, size: 20),
+            child: const Icon(Icons.add, size: 20),
           ),
         ],
       ),

@@ -137,7 +137,7 @@ class _MainScreenState extends State<MainScreen> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const Retsept()),
+          MaterialPageRoute(builder: (context) => const RetseptScreen()),
         );
       },
       child: Container(

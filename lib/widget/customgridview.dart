@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooker_cooker/provider/homeprovider.dart';
+import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
 import 'package:hooker_cooker/gen/assets.gen.dart';
-import 'package:hooker_cooker/mock/mockdata.dart';
 import 'package:hooker_cooker/screen/pishirishboshlash.dart';
 
-class Customgridview extends StatefulWidget {
+class Customgridview extends StatelessWidget {
   const Customgridview({super.key});
 
   @override
-  State<Customgridview> createState() => _CustomgridviewState();
-}
-
-class _CustomgridviewState extends State<Customgridview> {
-  @override
   Widget build(BuildContext context) {
+    // Provider'ni kuzatib turamiz
+    final provider = context.watch<HomeProvider>();
+
     return SizedBox(
       width: double.infinity,
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
-        // Static ro'yxatdan foydalanamiz
-        itemCount: OvqatMock.mockOvqatlar.length,
+        itemCount: provider.ovqatlar.length,
         padding: EdgeInsets.zero,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -31,7 +29,7 @@ class _CustomgridviewState extends State<Customgridview> {
           childAspectRatio: 0.75,
         ),
         itemBuilder: (context, index) {
-          final ovqat = OvqatMock.mockOvqatlar[index];
+          final ovqat = provider.ovqatlar[index];
 
           return GestureDetector(
             onTap: () {
@@ -107,15 +105,14 @@ class _CustomgridviewState extends State<Customgridview> {
                           ),
                         ),
                       ),
-                      // Yurakcha (Favorite) tugmasi
+                      // Yurakcha (Favorite) tugmasi - Provider orqali boshqariladi
                       Positioned(
                         top: 8,
                         right: 8,
                         child: GestureDetector(
                           onTap: () {
-                            setState(() {
-                              ovqat.yurak = !ovqat.yurak;
-                            });
+                            // Provider'dagi funksiya chaqiriladi
+                            context.read<HomeProvider>().toggleFavorite(index);
                           },
                           child: CircleAvatar(
                             backgroundColor: Cols.white,
