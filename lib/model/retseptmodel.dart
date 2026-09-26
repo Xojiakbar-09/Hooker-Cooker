@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:hooker_cooker/model/ingredient.dart';
 
 class RetseptModel {
-  final bool sersa;
+   bool yurak;
   final String audio;
   final int? id;
   final String imagePath;
@@ -12,13 +12,16 @@ class RetseptModel {
   final List<Ingredient> masalliqlar;
   final List<String> qadamlar;
 
-  bool get yurak => sersa;
+  bool get sersa => yurak; 
+  set sersa(bool value) => yurak = value;
+
   String get daqiqa => vaqt;
   String get daraja => "O'rtacha";
   String get insonga => portsiya;
   String get videoUrl => imagePath;
   String get turi => 'milliy taom';
   String? get video => videoUrl;
+
   RetseptModel({
     this.id,
     required this.imagePath,
@@ -28,7 +31,7 @@ class RetseptModel {
     required this.masalliqlar,
     required this.qadamlar,
     required this.audio,
-    required this.sersa,
+    required this.yurak, 
   });
 
   Map<String, dynamic> toMap() {
@@ -40,12 +43,15 @@ class RetseptModel {
       'vaqt': vaqt,
       'masalliqlar': jsonEncode(masalliqlar.map((e) => e.toMap()).toList()),
       'qadamlar': jsonEncode(qadamlar),
+      'audio': audio,
+      'sersa': yurak ? 1 : 0, 
     };
   }
 
   factory RetseptModel.fromMap(Map<String, dynamic> map) {
     return RetseptModel(
-      sersa: map['sersa'] ?? false,
+      // Bazadagi sersa qiymatini yurakka o'qib olamiz
+      yurak: map['sersa'] == 1 || map['sersa'] == true, 
       audio: map['audio'] ?? '',
       id: map['id'],
       imagePath: map['imagePath'] ?? '',
@@ -54,8 +60,8 @@ class RetseptModel {
       vaqt: map['vaqt'] ?? '',
       masalliqlar: map['masalliqlar'] != null
           ? (jsonDecode(map['masalliqlar']) as List)
-                .map((e) => Ingredient.fromMap(e))
-                .toList()
+              .map((e) => Ingredient.fromMap(e))
+              .toList()
           : [],
       qadamlar: map['qadamlar'] != null
           ? List<String>.from(jsonDecode(map['qadamlar']))

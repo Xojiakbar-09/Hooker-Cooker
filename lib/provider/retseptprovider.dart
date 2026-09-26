@@ -137,7 +137,6 @@ class RetseptProvider extends ChangeNotifier {
       }
 
       final newRecipe = RetseptModel(
-        sersa: false,
         imagePath: _selectedImage?.path ?? '',
         nomi: nomi,
         portsiya: "$_porsiya kishilik",
@@ -145,6 +144,7 @@ class RetseptProvider extends ChangeNotifier {
         masalliqlar: List.from(_ingredients),
         qadamlar: List.from(_steps),
          audio: '',
+         yurak: false,
       );
 
       await DatabaseHelper.instance.insertRecipe(newRecipe);

@@ -4,7 +4,7 @@ class OvqatMock {
     Ovqat(
     audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video:
-          'https://www.bing.com/ck/a?!&&p=e3e7b139b8e9e42d263de10dd9a080d40d43c4aadb1fe89a216236075ab7ff1dJmltdHM9MTc5MDI5NDQwMA&ptn=3&ver=2&hsh=4&fclid=1f175185-873e-62a8-39da-4698861f638d&u=a1L3ZpZGVvcy9yaXZlcnZpZXcvcmVsYXRlZHZpZGVvP3E9b3NoK3Bpc2hpcmlzaCt2aWRlb3NpJm1pZD04RTc0RDVBRTI4MEE4MjBDNzU1NjhFNzRENUFFMjgwQTgyMEM3NTU2JmNodXJsPWh0dHBzJTNhJTJmJTJmd3d3LnlvdXR1YmUuY29tJTJmY2hhbm5lbCUyZlVDRS1sYXU2M2V4NldYSEJzVjRiNjVSdyZtbXNjbj1zdHZvJkZPUk09VklSRQ',
+          'https://www.youtube.com/watch?v=p96kbSQVX8E&pp=ygUDb3No0gcJCS8MAYcqIYzv',
       yurak: false,
       nomi: "Toshkentcha to'y oshi",
       turi: "Milliy taom",
@@ -12,7 +12,7 @@ class OvqatMock {
       daqiqa: 120.0,
       reyting: 4.9,
 
-      daraja: "Qiyin", // <--- Daraja qo'shildi
+      daraja: "Qiyin",
       discribtion:
           "O'zbek milliy oshxonasining shoh taomi, bayram va to'ylarning ko'rki.",
       videoUrl:
@@ -42,7 +42,7 @@ class OvqatMock {
     ),
     // 2. An'anaviy Manti
     Ovqat(
-        audio: '',
+        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video:
           'https://www.bing.com/ck/a?!&&p=ae77d30221a4c7426e5a172859b5d66bab3445b2178c237f7a78b805859926c5JmltdHM9MTc5MDIwODAwMA&ptn=3&ver=2&hsh=4&fclid=1f175185-873e-62a8-39da-4698861f638d&psq=manti+taom+video+&u=a1aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj1qVlJMbHhhN2l6MA&ntb=1',
       yurak: false,
@@ -77,7 +77,7 @@ class OvqatMock {
     ),
     // 3. Uycha Lag'mon
     Ovqat(
-        audio: '',
+        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Uyg'urcha Lag'mon",
@@ -116,7 +116,7 @@ class OvqatMock {
     ),
     // 4. Qarsildoq Somsa
     Ovqat(
-        audio: '',
+        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Qarsildoq Somsa",
@@ -155,7 +155,7 @@ class OvqatMock {
     ),
     // 5. Mastava
     Ovqat(
-        audio: '',
+        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Mastava",
@@ -198,7 +198,7 @@ class OvqatMock {
     ),
     // 6. Sezar Salati
     Ovqat(
-        audio: '',
+        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Sezar Salati",
@@ -237,7 +237,7 @@ class OvqatMock {
     ),
     // 7. Pepperoni Pitsa
     Ovqat(
-        audio: '',
+        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Pepperoni Pitsa",
@@ -280,7 +280,7 @@ class OvqatMock {
     ),
     // 8. Qozon Kabob
     Ovqat(
-        audio: '',
+        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Qozon Kabob",
@@ -318,7 +318,7 @@ class OvqatMock {
     ),
     // 9. Norin
     Ovqat(
-        audio: '',
+        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Norin",
@@ -357,7 +357,7 @@ class OvqatMock {
     ),
     // 10. Klub Sendvich
     Ovqat(
-        audio: '',
+        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Klub Sendvich",
