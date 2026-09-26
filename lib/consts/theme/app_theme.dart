@@ -8,9 +8,10 @@ class Apptheme {
     scaffoldBackgroundColor: Cols.white,
     colorScheme: ColorScheme.light(primary: Cols.primery),
   );
+
   static final ThemeData dark = ThemeData(
     fontFamily: FontFamily.plus,
-    scaffoldBackgroundColor: Cols.white,
+    scaffoldBackgroundColor: Cols.dark,
     colorScheme: ColorScheme.dark(primary: Cols.primery),
   );
 }

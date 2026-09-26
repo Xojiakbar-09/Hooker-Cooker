@@ -92,7 +92,7 @@ class MasalliqlarCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: TextField(
-                          controller: provider.nameController,
+                          controller: provider.masalliqNomiController,
                           keyboardType: TextInputType.name,
                           cursorColor: Cols.dark,
                           cursorWidth: 1,
@@ -142,7 +142,7 @@ class MasalliqlarCard extends StatelessWidget {
 
                       Expanded(
                         child: TextField(
-                          controller: provider.amountController,
+                          controller: provider.masalliqMiqdoriController,
                           keyboardType: TextInputType.text,
                           cursorColor: Cols.dark,
                           cursorWidth: 1,
@@ -205,7 +205,10 @@ class MasalliqlarCard extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
               ),
               child: const Text(
                 'Massaliqni qoshish',

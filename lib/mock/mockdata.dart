@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-
 class OvqatMock {
   static final List<Ovqat> mockOvqatlar = [
     // 1. Toshkentcha to'y oshi
     Ovqat(
+    audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      video:
+          'https://www.bing.com/ck/a?!&&p=e3e7b139b8e9e42d263de10dd9a080d40d43c4aadb1fe89a216236075ab7ff1dJmltdHM9MTc5MDI5NDQwMA&ptn=3&ver=2&hsh=4&fclid=1f175185-873e-62a8-39da-4698861f638d&u=a1L3ZpZGVvcy9yaXZlcnZpZXcvcmVsYXRlZHZpZGVvP3E9b3NoK3Bpc2hpcmlzaCt2aWRlb3NpJm1pZD04RTc0RDVBRTI4MEE4MjBDNzU1NjhFNzRENUFFMjgwQTgyMEM3NTU2JmNodXJsPWh0dHBzJTNhJTJmJTJmd3d3LnlvdXR1YmUuY29tJTJmY2hhbm5lbCUyZlVDRS1sYXU2M2V4NldYSEJzVjRiNjVSdyZtbXNjbj1zdHZvJkZPUk09VklSRQ',
       yurak: false,
       nomi: "Toshkentcha to'y oshi",
       turi: "Milliy taom",
@@ -17,34 +18,17 @@ class OvqatMock {
       videoUrl:
           "https://tse2.mm.bing.net/th/id/OIP.Px01rF3Qhg8pp0KUCvFTYgHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
       masalliqlar: [
-        Masalliq(
-          isChecked: false,
-          nomi: "Lazer guruchi",
-          izoh: "Saralab yuvilgan",
-          miqdori: "1 kg",
-        ),
+        Masalliq(isChecked: false, nomi: "Lazer guruchi", miqdori: "1 kg"),
         Masalliq(
           isChecked: false,
           nomi: "Qo'y go'shti (laxtak)",
-          izoh: "Yirik bo'laklangan",
           miqdori: "1 kg",
         ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Sariq sabzi",
-          izoh: "Somoncha to'g'ralgan",
-          miqdori: "1 kg",
-        ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Dumba yog'i",
-          izoh: "Eritish uchun",
-          miqdori: "200 gr",
-        ),
+        Masalliq(isChecked: false, nomi: "Sariq sabzi", miqdori: "1 kg"),
+        Masalliq(isChecked: false, nomi: "Dumba yog'i", miqdori: "200 gr"),
         Masalliq(
           isChecked: false,
           nomi: "Zira va zirk",
-          izoh: "Hidi o'tkir mayda zira",
           miqdori: "2 osh qoshiq",
         ),
       ],
@@ -58,6 +42,9 @@ class OvqatMock {
     ),
     // 2. An'anaviy Manti
     Ovqat(
+        audio: '',
+      video:
+          'https://www.bing.com/ck/a?!&&p=ae77d30221a4c7426e5a172859b5d66bab3445b2178c237f7a78b805859926c5JmltdHM9MTc5MDIwODAwMA&ptn=3&ver=2&hsh=4&fclid=1f175185-873e-62a8-39da-4698861f638d&psq=manti+taom+video+&u=a1aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj1qVlJMbHhhN2l6MA&ntb=1',
       yurak: false,
       nomi: "An'anaviy Manti",
       turi: "Milliy taom",
@@ -71,34 +58,13 @@ class OvqatMock {
       videoUrl:
           "https://tse1.mm.bing.net/th/id/OIP.nwDXLx8A--kQYSEkq6JaiwHaEv?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
       masalliqlar: [
-        Masalliq(
-          isChecked: false,
-          nomi: "A'lo navli un",
-          izoh: "Xamir uchun",
-          miqdori: "500 gr",
-        ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Mol go'shti",
-          izoh: "Mayda to'g'ralgan",
-          miqdori: "700 gr",
-        ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Piyoz",
-          izoh: "Mayda to'g'ralgan",
-          miqdori: "1 kg",
-        ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Dumba yog'i",
-          izoh: "Manti ichiga",
-          miqdori: "150 gr",
-        ),
+        Masalliq(isChecked: false, nomi: "A'lo navli un", miqdori: "500 gr"),
+        Masalliq(isChecked: false, nomi: "Mol go'shti", miqdori: "700 gr"),
+        Masalliq(isChecked: false, nomi: "Piyoz", miqdori: "1 kg"),
+        Masalliq(isChecked: false, nomi: "Dumba yog'i", miqdori: "150 gr"),
         Masalliq(
           isChecked: false,
           nomi: "Murch va zira",
-          izoh: "Ta'mga ko'ra",
           miqdori: "1 choy qoshiq",
         ),
       ],
@@ -111,6 +77,8 @@ class OvqatMock {
     ),
     // 3. Uycha Lag'mon
     Ovqat(
+        audio: '',
+      video: '',
       yurak: false,
       nomi: "Uyg'urcha Lag'mon",
       turi: "Suyuq ovqat",
@@ -124,36 +92,19 @@ class OvqatMock {
       videoUrl:
           "https://zira.uz/wp-content/uploads/2018/06/uygurskiy-lagman-4.jpg",
       masalliqlar: [
-        Masalliq(
-          isChecked: false,
-          nomi: "Un va tuxum",
-          izoh: "Xamir cho'zish uchun",
-          miqdori: "600 gr",
-        ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Mol go'shti",
-          izoh: "Yupqa to'g'ralgan",
-          miqdori: "400 gr",
-        ),
+        Masalliq(isChecked: false, nomi: "Un va tuxum", miqdori: "600 gr"),
+        Masalliq(isChecked: false, nomi: "Mol go'shti", miqdori: "400 gr"),
         Masalliq(
           isChecked: false,
           nomi: "Bulg'or qalampiri",
-          izoh: "Qizil va yashil",
           miqdori: "2 dona",
         ),
         Masalliq(
           isChecked: false,
           nomi: "Pomidor va sarimsoq",
-          izoh: "Qayla uchun",
           miqdori: "3 dona",
         ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Pekinka karami",
-          izoh: "To'g'ralgan",
-          miqdori: "200 gr",
-        ),
+        Masalliq(isChecked: false, nomi: "Pekinka karami", miqdori: "200 gr"),
       ],
       qadamlar: [
         "Tuxum va tuzli suvdan xamir qorib, yog'lab tindiramiz.",
@@ -165,6 +116,8 @@ class OvqatMock {
     ),
     // 4. Qarsildoq Somsa
     Ovqat(
+        audio: '',
+      video: '',
       yurak: false,
       nomi: "Qarsildoq Somsa",
       turi: "Pishiriq",
@@ -178,34 +131,17 @@ class OvqatMock {
       videoUrl:
           "https://th.bing.com/th/id/R.89385b04a29b4f10d47b485f9030c8c6?rik=X9RZWDdBRkAmkA&pid=ImgRaw&r=0",
       masalliqlar: [
-        Masalliq(
-          isChecked: false,
-          nomi: "Oliy navli un",
-          izoh: "Xamir uchun",
-          miqdori: "600 gr",
-        ),
+        Masalliq(isChecked: false, nomi: "Oliy navli un", miqdori: "600 gr"),
         Masalliq(
           isChecked: false,
           nomi: "Sariyog' (Margarin)",
-          izoh: "Qatlash uchun",
           miqdori: "250 gr",
         ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Qo'y go'shti",
-          izoh: "Mayda to'g'ralgan",
-          miqdori: "500 gr",
-        ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Piyoz",
-          izoh: "To'g'ralgan",
-          miqdori: "600 gr",
-        ),
+        Masalliq(isChecked: false, nomi: "Qo'y go'shti", miqdori: "500 gr"),
+        Masalliq(isChecked: false, nomi: "Piyoz", miqdori: "600 gr"),
         Masalliq(
           isChecked: false,
           nomi: "Zira, murch, tuz",
-          izoh: "Ta'mga ko'ra",
           miqdori: "Yetarlicha",
         ),
       ],
@@ -219,6 +155,8 @@ class OvqatMock {
     ),
     // 5. Mastava
     Ovqat(
+        audio: '',
+      video: '',
       yurak: false,
       nomi: "Mastava",
       turi: "Suyuq ovqat",
@@ -232,34 +170,21 @@ class OvqatMock {
       videoUrl:
           "https://tse1.mm.bing.net/th/id/OIP.tECzTrLCLP1a3IEHhC_4ogHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
       masalliqlar: [
-        Masalliq(
-          isChecked: false,
-          nomi: "Guruch",
-          izoh: "Yuvib ivitilgan",
-          miqdori: "150 gr",
-        ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Mol go'shti",
-          izoh: "Mayda kubik to'g'ralgan",
-          miqdori: "300 gr",
-        ),
+        Masalliq(isChecked: false, nomi: "Guruch", miqdori: "150 gr"),
+        Masalliq(isChecked: false, nomi: "Mol go'shti", miqdori: "300 gr"),
         Masalliq(
           isChecked: false,
           nomi: "Kartoshka va Sabzi",
-          izoh: "Kubik qilib to'g'ralgan",
           miqdori: "2 donadan",
         ),
         Masalliq(
           isChecked: false,
           nomi: "Pomidor va Piyoz",
-          izoh: "Qovurish uchun",
           miqdori: "1 donadan",
         ),
         Masalliq(
           isChecked: false,
           nomi: "Qatiq va Ko'katlar",
-          izoh: "Ustiga bezak uchun",
           miqdori: "Ta'bga ko'ra",
         ),
       ],
@@ -273,6 +198,8 @@ class OvqatMock {
     ),
     // 6. Sezar Salati
     Ovqat(
+        audio: '',
+      video: '',
       yurak: false,
       nomi: "Sezar Salati",
       turi: "Salat",
@@ -286,36 +213,19 @@ class OvqatMock {
       videoUrl:
           "https://evdar.az/wp-content/uploads/Dadli-v%C9%99-Yungul-Krevetkali-Sezar-Salati2.jpg",
       masalliqlar: [
-        Masalliq(
-          isChecked: false,
-          nomi: "Tovuq filesi",
-          izoh: "Qovurilgan yoki pishirilgan",
-          miqdori: "200 gr",
-        ),
+        Masalliq(isChecked: false, nomi: "Tovuq filesi", miqdori: "200 gr"),
         Masalliq(
           isChecked: false,
           nomi: "Aysberg salat bargi",
-          izoh: "Yirik qilib uzilgan",
           miqdori: "1 ta",
         ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Suxari",
-          izoh: "Qovurilgan non bo'laklari",
-          miqdori: "100 gr",
-        ),
+        Masalliq(isChecked: false, nomi: "Suxari", miqdori: "100 gr"),
         Masalliq(
           isChecked: false,
           nomi: "Parmesan pishlog'i",
-          izoh: "Qirg'ichdan o'tkazilgan",
           miqdori: "50 gr",
         ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Sezar sousi",
-          izoh: "Mayonezli maxsus sous",
-          miqdori: "3 qoshiq",
-        ),
+        Masalliq(isChecked: false, nomi: "Sezar sousi", miqdori: "3 qoshiq"),
       ],
       qadamlar: [
         "Tovuq filesini tuz va murchlab, tovada ikki tomonini qovurib olamiz.",
@@ -327,6 +237,8 @@ class OvqatMock {
     ),
     // 7. Pepperoni Pitsa
     Ovqat(
+        audio: '',
+      video: '',
       yurak: false,
       nomi: "Pepperoni Pitsa",
       turi: "Fast food",
@@ -340,36 +252,23 @@ class OvqatMock {
       videoUrl:
           "https://tse4.mm.bing.net/th/id/OIP.jAD9aEjFF-FHHhK8hFzQ_wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
       masalliqlar: [
-        Masalliq(
-          isChecked: false,
-          nomi: "Pitsa xamiri",
-          izoh: "Oshirma xamir",
-          miqdori: "1 ta",
-        ),
+        Masalliq(isChecked: false, nomi: "Pitsa xamiri", miqdori: "1 ta"),
         Masalliq(
           isChecked: false,
           nomi: "Pepperoni kolbasasi",
-          izoh: "Yupqa parrak qilingan",
           miqdori: "150 gr",
         ),
         Masalliq(
           isChecked: false,
           nomi: "Motsarella pishlog'i",
-          izoh: "Qirg'ichdan o'tkazilgan",
           miqdori: "200 gr",
         ),
         Masalliq(
           isChecked: false,
           nomi: "Pomidor sousi",
-          izoh: "Pitsa uchun maxsus",
           miqdori: "3-4 qoshiq",
         ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Oregano (Ziravor)",
-          izoh: "Xushbo'ylik uchun",
-          miqdori: "Biroz",
-        ),
+        Masalliq(isChecked: false, nomi: "Oregano (Ziravor)", miqdori: "Biroz"),
       ],
       qadamlar: [
         "Pitsa xamirini yupqa qilib yoyib, patnisga joylaymiz.",
@@ -381,6 +280,8 @@ class OvqatMock {
     ),
     // 8. Qozon Kabob
     Ovqat(
+        audio: '',
+      video: '',
       yurak: false,
       nomi: "Qozon Kabob",
       turi: "Milliy taom",
@@ -396,33 +297,16 @@ class OvqatMock {
         Masalliq(
           isChecked: false,
           nomi: "Qo'y qovurg'asi/go'shti",
-          izoh: "Yirik bo'laklangan",
           miqdori: "1 kg",
         ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Kartoshka",
-          izoh: "O'rtacha kattalikda",
-          miqdori: "1 kg",
-        ),
-        Masalliq(
-          isChecked: false,
-          nomi: "O'simlik yog'i",
-          izoh: "Qovurish uchun",
-          miqdori: "200 ml",
-        ),
+        Masalliq(isChecked: false, nomi: "Kartoshka", miqdori: "1 kg"),
+        Masalliq(isChecked: false, nomi: "O'simlik yog'i", miqdori: "200 ml"),
         Masalliq(
           isChecked: false,
           nomi: "Zira, kashnich urug'i, tuz",
-          izoh: "Go'shtni marinovka qilish uchun",
           miqdori: "Yetarlicha",
         ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Piyoz va ko'katlar",
-          izoh: "Bezatish uchun",
-          miqdori: "1 ta",
-        ),
+        Masalliq(isChecked: false, nomi: "Piyoz va ko'katlar", miqdori: "1 ta"),
       ],
       qadamlar: [
         "Go'shtni tuz va ziravorlar bilan aralashtirib biroz marinadlaymiz.",
@@ -434,6 +318,8 @@ class OvqatMock {
     ),
     // 9. Norin
     Ovqat(
+        audio: '',
+      video: '',
       yurak: false,
       nomi: "Norin",
       turi: "Milliy taom",
@@ -450,31 +336,14 @@ class OvqatMock {
         Masalliq(
           isChecked: false,
           nomi: "Ot yoki Mol go'shti",
-          izoh: "Tuzlangan",
           miqdori: "1 kg",
         ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Qazi",
-          izoh: "Pishirilgan ot qazisi",
-          miqdori: "1 dona",
-        ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Un va tuxum",
-          izoh: "Xamir uchun",
-          miqdori: "1 kg",
-        ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Piyoz",
-          izoh: "Yupqa to'g'ralgan",
-          miqdori: "3 dona",
-        ),
+        Masalliq(isChecked: false, nomi: "Qazi", miqdori: "1 dona"),
+        Masalliq(isChecked: false, nomi: "Un va tuxum", miqdori: "1 kg"),
+        Masalliq(isChecked: false, nomi: "Piyoz", miqdori: "3 dona"),
         Masalliq(
           isChecked: false,
           nomi: "Murch va Zira",
-          izoh: "Xushbo'ylik uchun",
           miqdori: "Ta'bga ko'ra",
         ),
       ],
@@ -488,6 +357,8 @@ class OvqatMock {
     ),
     // 10. Klub Sendvich
     Ovqat(
+        audio: '',
+      video: '',
       yurak: false,
       nomi: "Klub Sendvich",
       turi: "Fast food",
@@ -501,34 +372,17 @@ class OvqatMock {
       videoUrl:
           "https://tse1.explicit.bing.net/th/id/OIP.xqKYUoX_IQi9XPtpO6Nf8gHaLG?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
       masalliqlar: [
-        Masalliq(
-          isChecked: false,
-          nomi: "Tost noni",
-          izoh: "Kvadrat shaklidagi oq non",
-          miqdori: "3 bo'lak",
-        ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Tovuq filesi",
-          izoh: "Qovurilgan yoki dudlangan",
-          miqdori: "100 gr",
-        ),
-        Masalliq(
-          isChecked: false,
-          nomi: "Tuxum",
-          izoh: "Qovurilgan quymoq (glazunya)",
-          miqdori: "1 ta",
-        ),
+        Masalliq(isChecked: false, nomi: "Tost noni", miqdori: "3 bo'lak"),
+        Masalliq(isChecked: false, nomi: "Tovuq filesi", miqdori: "100 gr"),
+        Masalliq(isChecked: false, nomi: "Tuxum", miqdori: "1 ta"),
         Masalliq(
           isChecked: false,
           nomi: "Pomidor va bodring",
-          izoh: "Yupqa kesilgan",
           miqdori: "4 bo'lakdan",
         ),
         Masalliq(
           isChecked: false,
           nomi: "Mayonez va pishloq",
-          izoh: "Xohishga ko'ra",
           miqdori: "1 bo'lak",
         ),
       ],
@@ -546,18 +400,18 @@ class OvqatMock {
 class Masalliq {
   bool isChecked;
   final String nomi;
-  final String izoh;
   final String miqdori;
 
   Masalliq({
     required this.nomi,
-    required this.izoh,
     required this.miqdori,
     required this.isChecked,
   });
 }
 
 class Ovqat {
+  final String audio;
+  final String video;
   final String daraja;
   bool yurak;
   final String insonga;
@@ -582,5 +436,7 @@ class Ovqat {
     required this.qadamlar,
     required this.videoUrl,
     required this.daraja,
+    required this.video,
+     required this.audio,
   });
 }

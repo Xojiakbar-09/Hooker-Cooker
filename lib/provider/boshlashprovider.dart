@@ -9,7 +9,6 @@ class BoshlashProvider extends ChangeNotifier {
     }
   }
 
-  // 2. Masaliqlartab uchun tab indeksi (0 yoki 1)
   int _selectedIndex = 0;
   int get selectedIndex => _selectedIndex;
 
@@ -18,7 +17,6 @@ class BoshlashProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // 3. Masalliqning belgilangan (isChecked) holatini o'zgartirish
   void toggleCheck(dynamic item) {
     if (item != null) {
       item.isChecked = !item.isChecked;

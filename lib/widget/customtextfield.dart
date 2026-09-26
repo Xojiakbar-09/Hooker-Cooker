@@ -26,11 +26,16 @@ class Customtextfield extends StatelessWidget {
             cursorHeight: 20,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
+              errorStyle: const TextStyle(fontSize: 0, height: 0),
               isDense: true,
               contentPadding: const EdgeInsets.symmetric(vertical: 12),
               prefixIcon: Transform.scale(
                 scale: 0.7,
-                child: SvgPicture.asset(Assets.icons.email, height: 5, width: 5),
+                child: SvgPicture.asset(
+                  Assets.icons.email,
+                  height: 5,
+                  width: 5,
+                ),
               ),
               border: const OutlineInputBorder(borderSide: BorderSide.none),
               hintText: 'Email',
@@ -61,6 +66,7 @@ class Customtextfield extends StatelessWidget {
                 scale: 0.7,
                 child: SvgPicture.asset(Assets.icons.lock, height: 3, width: 3),
               ),
+              errorStyle: const TextStyle(fontSize: 0, height: 0),
               suffixIcon: TextButton(
                 style: TextButton.styleFrom(
                   splashFactory: NoSplash.splashFactory,

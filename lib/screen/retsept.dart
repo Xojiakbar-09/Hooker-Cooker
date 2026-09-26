@@ -1,83 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:hooker_cooker/consts/colors/appcolor.dart';
 import 'package:hooker_cooker/provider/retseptprovider.dart';
+import 'package:hooker_cooker/widget/customimage.dart';
+import 'package:hooker_cooker/widget/masalliq.dart';
+import 'package:hooker_cooker/widget/retsepapbar.dart';
+import 'package:hooker_cooker/widget/retseptcard.dart';
+import 'package:hooker_cooker/widget/step.dart';
+import 'package:hooker_cooker/widget/stepqoshish.dart';
 import 'package:provider/provider.dart';
 
-class RetseptScreen extends StatefulWidget {
-  const RetseptScreen({super.key});
+class Retsept extends StatefulWidget {
+  const Retsept({super.key});
 
   @override
-  State<RetseptScreen> createState() => _RetseptScreenState();
+  State<Retsept> createState() => _RetseptState();
 }
 
-class _RetseptScreenState extends State<RetseptScreen> {
+class _RetseptState extends State<Retsept> {
   @override
   void initState() {
     super.initState();
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    Provider.of<RetseptProvider>(context, listen: false).fetchIngredients();
-  });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<RetseptProvider>().clearForm();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<RetseptProvider>(context);
+    final provider = context.watch<RetseptProvider>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Retsept Masalliqilari"),
-        centerTitle: true,
-      ),
+      backgroundColor: Cols.canvas,
+      appBar: const AddRecipeAppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: provider.nameController,
-              decoration: const InputDecoration(
-                labelText: "Masalliq nomi (masalan: Un)",
-                border: OutlineInputBorder(),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: CustomImage(
+                  selectedImage: provider.selectedImage,
+                  onPickImage: (source) => provider.pickImage(source),
+                  onRemoveImage: () => provider.removeImage(),
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: provider.amountController,
-              decoration: const InputDecoration(
-                labelText: "Mog'dori (masalan: 200g)",
-                border: OutlineInputBorder(),
+              const Retseptcard(),
+              const SizedBox(height: 15),
+              const Text(
+                "MASALLIQLAR RO'YXATI",
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
               ),
-            ),
-            const SizedBox(height: 12),
-            ElevatedButton(
-              onPressed: () => provider.masalliqQoshish(),
-              child: const Text("Masalliq qo'shish"),
-            ),
-            const SizedBox(height: 20),
-            Expanded(
-              child: provider.ingredients.isEmpty
-                  ? const Center(child: Text("Hozircha masalliqlar yo'q"))
-                  : ListView.builder(
-                      itemCount: provider.ingredients.length,
-                      itemBuilder: (context, index) {
-                        final item = provider.ingredients[index];
-                        return Card(
-                          margin: const EdgeInsets.symmetric(vertical: 4),
-                          child: ListTile(
-                            title: Text(item.name),
-                            subtitle: Text(item.amount),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.delete, color: Colors.red),
-                              onPressed: () {
-                                if (item.id != null) {
-                                  provider.masalliqOchirish(item.id!);
-                                }
-                              },
-                            ),
-                          ),
-                        );
-                      },
+              const SizedBox(height: 8),
+              const MasalliqlarCard(),
+              const SizedBox(height: 15),
+
+              const Text(
+                "QADAMLAR (TAYYORLASH)",
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 8),
+
+              // Controller ulandi va sintaktik xato to'g'rilandi
+              Stepqoshish(
+                controller: provider.stepController,
+                onAdd: (newStep) {
+                  provider.stepQoshish(newStep);
+                },
+              ),
+              const SizedBox(height: 12),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: provider.steps.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Stepcard(
+                      stepNumber: index + 1,
+                      stepText: provider.steps[index],
                     ),
-            ),
-          ],
+                  );
+                },
+              ),
+
+              const SizedBox(height: 50),
+            ],
+          ),
         ),
       ),
     );

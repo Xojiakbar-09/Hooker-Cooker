@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hooker_cooker/widget/sanekebar.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class LoginProvider extends ChangeNotifier {
   // Kontrollerlar va Form Key
@@ -16,12 +18,13 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Tezkis sozlamalar holatlari
+  // Tezkor sozlamalar holatlari
   bool _isDark = false;
   bool get isDark => _isDark;
 
   void toggleDark(bool value) {
     _isDark = value;
+    GetStorage().write('isDark', value);
     notifyListeners();
   }
 
@@ -30,12 +33,15 @@ class LoginProvider extends ChangeNotifier {
 
   void toggleBell(bool value) {
     _isBell = value;
+    GetStorage().write('isBell', value);
     notifyListeners();
   }
 
-  // Sahifa ochilganda GetStorage'ga yozish
+  // Sahifa ochilganda GetStorage'dan sozlamalarni o'qish (Vaqtinchalik kirishni true qilmaydi)
   void initStorage() {
-    GetStorage().write('kirish', true);
+    _isDark = GetStorage().read('isDark') ?? false;
+    _isBell = GetStorage().read('isBell') ?? false;
+    notifyListeners();
   }
 
   // Email validatsiyasi
@@ -64,8 +70,36 @@ class LoginProvider extends ChangeNotifier {
 
   // Tizimga kirish tugmasi bosilganda
   void login(BuildContext context, VoidCallback onSuccess) {
+    // 1. Agar forma validatsiyadan to'liq o'tsa
     if (formKey.currentState?.validate() ?? false) {
-      onSuccess(); // Muvaffaqiyatli bo'lsa ekranni almashtirish uchun callback
+      // Faqat login muvaffaqiyatli bo'lganda kirish va email saqlanadi
+      GetStorage().write('kirish', true);
+      GetStorage().write('user_email', emailController.text.trim());
+
+      onSuccess(); // Asosiy ekranga o'tkazish
+    }
+    // 2. Formada xatolik bo'lsa Top Error SnackBar ko'rsatiladi
+    else {
+      final email = emailController.text.trim();
+      final password = passwordController.text;
+
+      if (email.isEmpty || password.isEmpty) {
+        showErrorTopSnackBar(
+          context,
+          "Iltimos, barcha maydonlarni to'ldiring!",
+        );
+      } else if (!RegExp(
+        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+      ).hasMatch(email)) {
+        showErrorTopSnackBar(context, "Email formati noto'g'ri!");
+      } else if (password.length < 8) {
+        showErrorTopSnackBar(
+          context,
+          "Parol kamida 8 ta belgidan iborat bo'lishi kerak!",
+        );
+      } else {
+        showErrorTopSnackBar(context, "Ma'lumotlar noto'g'ri kiritildi!");
+      }
     }
   }
 
@@ -76,4 +110,24 @@ class LoginProvider extends ChangeNotifier {
     super.dispose();
   }
 
+  // LoginProvider sinfi ichiga:
+  Future<void> requestAppPermissions() async {
+    // 1. Kamera ruxsati
+    var cameraStatus = await Permission.camera.status;
+    if (!cameraStatus.isGranted) {
+      await Permission.camera.request();
+    }
+
+    // 2. Galereya / Rasmlar ruxsati (Android 13+ va iOS uchun)
+    var photosStatus = await Permission.photos.status;
+    if (!photosStatus.isGranted) {
+      await Permission.photos.request();
+    }
+
+    // 3. Eski Android versiyalari uchun xotira ruxsati
+    var storageStatus = await Permission.storage.status;
+    if (!storageStatus.isGranted) {
+      await Permission.storage.request();
+    }
+  }
 }

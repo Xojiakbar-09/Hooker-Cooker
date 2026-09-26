@@ -156,10 +156,7 @@ class Masaliqlartab extends StatelessWidget {
                   color: Colors.black87,
                 ),
               ),
-              subtitle: Text(
-                item.izoh,
-                style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
-              ),
+             
               trailing: Text(
                 item.miqdori,
                 style: const TextStyle(

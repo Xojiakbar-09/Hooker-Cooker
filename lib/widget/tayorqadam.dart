@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
 
 class Tayorqadam extends StatelessWidget {
-  final int currentStep; // Hozirgi qadam (masalan: 3)
-  final int totalSteps; // Jami qadamlar soni (masalan: 6)
-  final String stepTitle; // Qadam nomi (masalan: "Zirvakni qaynatish")
+  final int currentStep; 
+  final int totalSteps;
+  final String stepTitle; 
 
   const Tayorqadam({
     super.key,
@@ -21,7 +21,6 @@ class Tayorqadam extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Top row: "QADAM 3 / 6" va "Zirvakni qaynatish"
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -69,7 +68,7 @@ class Tayorqadam extends StatelessWidget {
             backgroundColor: Colors.grey.shade800, 
             valueColor: AlwaysStoppedAnimation<Color>(
               Cols.orange,
-            ), // To'lgan qismi rangi
+            ),
           ),
         ),
       ],

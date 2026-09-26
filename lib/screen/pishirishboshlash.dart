@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
+import 'package:hooker_cooker/provider/boshlashprovider.dart';
 import 'package:hooker_cooker/screen/tayyorlash.dart';
+import 'package:hooker_cooker/screen/video.dart';
 import 'package:hooker_cooker/widget/masaliqlartab.dart';
 import 'package:hooker_cooker/widget/pisheleventbuten.dart';
 import 'package:hooker_cooker/widget/pishirishmasaliqlari.dart';
 import 'package:hooker_cooker/widget/videocont.dart';
+import 'package:provider/provider.dart';
 // BoshlashProvider faylini import qilasiz:
 // import 'boshlash_provider.dart';
 
@@ -41,10 +44,55 @@ class Pishirishniboshlash extends StatelessWidget {
       ),
       bottomNavigationBar: PishirishniBoshlashButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Tayyorlash(model: model)),
-          );
+          final String? imageUrl = model?.videoUrl;
+          final bool imagebor = imageUrl != null && imageUrl.isNotEmpty;
+
+          if (imagebor) {
+            if (imageUrl.startsWith('http://') ||
+                imageUrl.startsWith('https://')) {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Qaysi birini tanlaysiz'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Video(model: model),
+                            ),
+                          );
+                        },
+                        child: Text('Video'),
+                      ),
+                      // Tasdiqlash tugmasi
+                      TextButton(
+                        onPressed: () {
+                       
+                         Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Tayyorlash(model: model),
+                            ),
+                          );
+                        },
+                        child: Text('Qadam'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Tayyorlash(model: model),
+                ),
+              );
+            }
+          }
         },
       ),
     );

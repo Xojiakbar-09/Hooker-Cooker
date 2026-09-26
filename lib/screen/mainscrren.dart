@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
 import 'package:hooker_cooker/screen/homepage.dart';
+import 'package:hooker_cooker/screen/kolleksiya.dart';
 import 'package:hooker_cooker/screen/profile.dart';
 import 'package:hooker_cooker/screen/retsept.dart';
 import 'package:hooker_cooker/screen/saqlangan.dart';
@@ -20,9 +21,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final List<Widget> pages = [
       const Homepage(),
-      const Center(
-        child: Text("Kolleksiya Sahifasi", style: TextStyle(fontSize: 18)),
-      ),
+      Kolleksiya(),
       const Saqlangan(),
       const Profile()
     ];
@@ -137,7 +136,7 @@ class _MainScreenState extends State<MainScreen> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const RetseptScreen()),
+          MaterialPageRoute(builder: (context) => const Retsept()),
         );
       },
       child: Container(

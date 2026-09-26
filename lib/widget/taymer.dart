@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
-import 'package:hooker_cooker/widget/aylanataymer.dart';
+import 'package:hooker_cooker/widget/audioslider.dart';
 
 class Taymer extends StatelessWidget {
-  final VoidCallback tugaganda;
   final String qadamMatni;
+  final dynamic model;
 
-  const Taymer({
-    super.key,
-    required this.qadamMatni,
-    required this.tugaganda,
-  });
+  const Taymer({super.key, required this.qadamMatni, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +25,41 @@ class Taymer extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.tune_rounded, color: Cols.orange, size: 16),
+              Icon(Icons.music_note, color: Cols.orange, size: 16),
               const SizedBox(width: 8),
-              Text(
-                'JARAYON',
-                style: TextStyle(
-                  color: Cols.orange,
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.5,
+
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return model.audio == ''
+                          ? AlertDialog(
+                            backgroundColor: Cols.dark,
+                              title: Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                                child: const Text(
+                                  "Audio qo'llanmasi mavjud emas",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            )
+                          : AudioDialogWidget(audioUrl: model.audio);
+                    },
+                  );
+                },
+                child: Text(
+                  'JARAYON AUDIOSI',
+                  style: TextStyle(
+                    color: Cols.orange,
+                    fontSize: 11,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
+                  ),
                 ),
               ),
             ],
@@ -54,16 +76,6 @@ class Taymer extends StatelessWidget {
             fontWeight: FontWeight.bold,
             letterSpacing: 0.5,
             height: 1.3,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 46),
-          child: Aylanataymer(
-            onTimerComplete: () {
-              tugaganda;
-            },
-            initialMinutes: 15,
-           
           ),
         ),
       ],

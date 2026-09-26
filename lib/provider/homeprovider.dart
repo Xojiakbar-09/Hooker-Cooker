@@ -27,4 +27,10 @@ class HomeProvider extends ChangeNotifier {
     _filterIndex = index;
     notifyListeners();
   }
+
+  void pickFileFromFolder({required void Function() onSuccess}) {}
+
+  void pickimagecamera({required void Function() onSuccess}) {}
+
+  void pickimage({required void Function() onSuccess}) {}
 }

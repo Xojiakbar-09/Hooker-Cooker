@@ -46,7 +46,6 @@ class _CircularTimerWidgetState extends State<Aylanataymer> {
     });
   }
 
-  // +1 daqiqa qo'shish
   void _addOneMinute() {
     setState(() {
       _remainingSeconds += 60;
@@ -54,7 +53,6 @@ class _CircularTimerWidgetState extends State<Aylanataymer> {
     });
   }
 
-  // Vaqtni qayta o'rnatish
   void _resetTimer() {
     setState(() {
       _totalSeconds = widget.initialMinutes * 60;
@@ -69,7 +67,6 @@ class _CircularTimerWidgetState extends State<Aylanataymer> {
     super.dispose();
   }
 
-  // Vaqtni shakllantirish (MM:SS)
   String _formatTime(int totalSeconds) {
     final minutes = (totalSeconds ~/ 60).toString().padLeft(2, '0');
     final seconds = (totalSeconds % 60).toString().padLeft(2, '0');
@@ -78,7 +75,6 @@ class _CircularTimerWidgetState extends State<Aylanataymer> {
 
   @override
   Widget build(BuildContext context) {
-    // Qolgan vaqt nisbatini hisoblash (0.0 dan 1.0 gacha)
     final double percent = _totalSeconds > 0
         ? (_remainingSeconds / _totalSeconds).clamp(0.0, 1.0)
         : 0.0;
@@ -86,25 +82,22 @@ class _CircularTimerWidgetState extends State<Aylanataymer> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // 1. Aylana taymer
         CircularPercentIndicator(
           radius: 90.0,
           lineWidth: 10.0,
           percent: percent,
           circularStrokeCap: CircularStrokeCap.round,
-          progressColor: Cols.primery, // Olovrang
-          backgroundColor: const Color(0xFF2C2C2E), // To'q fon
+          progressColor: Cols.primery, 
+          backgroundColor: const Color(0xFF2C2C2E), 
           center: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Qo'ng'iroqcha ikonkasi
               Icon(
                 Icons.notifications_none_rounded,
                 color: Cols.primery,
                 size: 24,
               ),
               const SizedBox(height: 4),
-              // Taymer matni
               Text(
                 _formatTime(_remainingSeconds),
                 style: const TextStyle(
@@ -131,7 +124,6 @@ class _CircularTimerWidgetState extends State<Aylanataymer> {
 
         const SizedBox(height: 24),
 
-        // 2. Boshqaruv tugmalari
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -139,7 +131,6 @@ class _CircularTimerWidgetState extends State<Aylanataymer> {
             const SizedBox(width: 10),
             _buildActionButton(title: "Qayta o'rnatish", onTap: _resetTimer),
             const SizedBox(width: 10),
-           
           ],
         ),
       ],

@@ -1,33 +1,111 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
 
 class CustomImage extends StatelessWidget {
-  final VoidCallback? onImageSelected;
+  final File? selectedImage;
+  final Function(ImageSource source) onPickImage;
+  final VoidCallback onRemoveImage;
 
-  const CustomImage({super.key, this.onImageSelected});
+  const CustomImage({
+    super.key,
+    this.selectedImage,
+    required this.onPickImage,
+    required this.onRemoveImage,
+  });
+
+  // Galereya yoki Kamerani tanlash
+  void _showPickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: const Text(
+          "Rasm manbasini tanlang",
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: Icon(Icons.photo_library_rounded, color: Cols.primery),
+              title: const Text("Galereyadan tanlash"),
+              onTap: () {
+                Navigator.pop(context);
+                onPickImage(ImageSource.gallery);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.camera_alt_rounded, color: Cols.primery),
+              title: const Text("Kameraga olish"),
+              onTap: () {
+                Navigator.pop(context);
+                onPickImage(ImageSource.camera);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    // AGA RASM TANLANGAN BO'LSA — Rasmni o'zini va O'chirish tugmasini ko'rsatamiz
+    if (selectedImage != null) {
+      return Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.file(
+              selectedImage!,
+              width: double.infinity,
+              height: 200,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned(
+            top: 10,
+            right: 10,
+            child: GestureDetector(
+              onTap: onRemoveImage,
+              child: Container(
+                padding: const EdgeInsets.all(6),
+                decoration: const BoxDecoration(
+                  color: Colors.black54,
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(Icons.close, color: Colors.white, size: 20),
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
+    // AGA RASM TANLANMAGAN BO'LSA — Sizning asl dizayningiz
     return DottedBorder(
       options: RoundedRectDottedBorderOptions(
         color: Cols.primery,
         strokeWidth: 1.5,
-        dashPattern:  [6, 6],
-        radius:  Radius.circular(20), 
+        dashPattern: const [6, 6],
+        radius: const Radius.circular(20),
       ),
       child: Container(
         width: double.infinity,
-        padding:  EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
         decoration: BoxDecoration(
-          color:  Color(0xFFF9F9FB),
+          color: const Color(0xFFF9F9FB),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding:  EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
@@ -35,7 +113,7 @@ class CustomImage extends StatelessWidget {
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.06),
                     blurRadius: 12,
-                    offset:  Offset(0, 4),
+                    offset: const Offset(0, 4),
                   ),
                 ],
               ),
@@ -45,8 +123,8 @@ class CustomImage extends StatelessWidget {
                 size: 26,
               ),
             ),
-             SizedBox(height: 16),
-             Text(
+            const SizedBox(height: 16),
+            const Text(
               'Taom fotosuratini yuklang',
               style: TextStyle(
                 fontSize: 15,
@@ -54,8 +132,8 @@ class CustomImage extends StatelessWidget {
                 color: Colors.black87,
               ),
             ),
-             SizedBox(height: 4),
-             Text(
+            const SizedBox(height: 4),
+            const Text(
               'JPG yoki HEIC • Yuqori sifatli rasm',
               style: TextStyle(
                 fontSize: 12,
@@ -63,25 +141,25 @@ class CustomImage extends StatelessWidget {
                 fontWeight: FontWeight.w400,
               ),
             ),
-             SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton.icon(
-              onPressed: onImageSelected ?? () {},
+              onPressed: () => _showPickerDialog(context),
               style: ElevatedButton.styleFrom(
-                backgroundColor:  Color(0xFFFFEBE5),
+                backgroundColor: const Color(0xFFFFEBE5),
                 foregroundColor: Cols.primery,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                padding:  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              ),
-              icon:  Icon(Icons.add, size: 18),
-              label:  Text(
-                'Rasm tanlash',
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
                 ),
+              ),
+              icon: const Icon(Icons.add, size: 18),
+              label: const Text(
+                'Rasm tanlash',
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
               ),
             ),
           ],

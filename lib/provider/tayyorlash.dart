@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
 
 class TayyorlashProvider extends ChangeNotifier {
-  final PageController pageController = PageController();
+  late PageController pageController;
   int _correctPage = 0;
 
   int get correctPage => _correctPage;
 
-  // Sahifa o'zgarganda chaqiriladi
+  TayyorlashProvider() {
+    pageController = PageController();
+  }
+
+  // Sahifa holatini nollash
+  void reset() {
+    _correctPage = 0;
+    if (pageController.hasClients) {
+      pageController.jumpToPage(0);
+    }
+    notifyListeners();
+  }
+
   void onPageChanged(int index) {
     _correctPage = index;
     notifyListeners();
   }
 
-  // Keyingi qadamga o'tish
   void nextPage(int totalSteps, BuildContext context, VoidCallback onFinish) {
     if (_correctPage < totalSteps - 1) {
       pageController.nextPage(
@@ -21,10 +32,10 @@ class TayyorlashProvider extends ChangeNotifier {
       );
     } else {
       onFinish();
+      reset(); // Tugaganda holatni nollab qo'yamiz
     }
   }
 
-  // Oldingi qadamga o'tish
   void previousPage(BuildContext context) {
     if (_correctPage > 0) {
       pageController.previousPage(
@@ -32,6 +43,7 @@ class TayyorlashProvider extends ChangeNotifier {
         curve: Curves.easeInOut,
       );
     } else {
+      reset(); // Chiqishda ham holatni nollaymiz
       Navigator.pop(context);
     }
   }

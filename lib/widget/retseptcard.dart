@@ -45,8 +45,7 @@ class Retseptcard extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 TextField(
-                  controller:
-                      provider.nameController, // Providerdagi controller
+             controller:     provider.retseptNomiController, 
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,

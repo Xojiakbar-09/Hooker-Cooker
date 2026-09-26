@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hooker_cooker/consts/colors/appcolor.dart';
 import 'package:hooker_cooker/provider/retseptprovider.dart';
+import 'package:hooker_cooker/widget/sanekebar.dart';
+// ignore: undefined_hidden_name
+import 'package:hooker_cooker/widget/snekbar.dart' hide showPrimaryTopSnackBar;
 import 'package:provider/provider.dart';
 
 class AddRecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -39,30 +41,26 @@ class AddRecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        ElevatedButton(
+        TextButton(
           onPressed: () async {
             final provider = context.read<RetseptProvider>();
-            bool mufavvaqiyatli = await provider.retseptniSqflitegaSaqlash();
 
-            if (mufavvaqiyatli) {
-              // ignore: use_build_context_synchronously
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Retsept sqflite bazasiga saqlandi!"),
-                ),
-              );
-              // ignore: use_build_context_synchronously
-              Navigator.pop(context); // Ekranni yopish
+            // Xatolik matni olinadi (agar null bo'lsa xatolik yo'q)
+            String? xatolik = await provider.retseptniSqflitegaSaqlash();
+            if (!context.mounted) return;
+
+            if (xatolik == null) {
+              showPrimaryTopSnack(context, "Muvofaqiyatli saqlandi");
+              if (!context.mounted) return;
+              Navigator.pop(context);
             } else {
-              // ignore: use_build_context_synchronously
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Iltimos, taom nomini kiriting!")),
-              );
+              // Aniq yuz bergan xatolik ko'rsatiladi
+              showErrorTopSnackBar(context, xatolik);
             }
           },
           child: const Text("Saqlash"),
         ),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
       ],
     );
   }

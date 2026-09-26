@@ -8,18 +8,29 @@ import 'package:hooker_cooker/widget/customcard.dart';
 import 'package:hooker_cooker/widget/customdropdawn.dart';
 import 'package:hooker_cooker/widget/customelevent.dart';
 import 'package:hooker_cooker/widget/customtextfield.dart';
+import 'package:hooker_cooker/widget/snekbar.dart';
 import 'package:provider/provider.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  @override
+  void initState() {
+    super.initState();
+    
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<LoginProvider>().initStorage();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<LoginProvider>();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      provider.initStorage();
-    });
 
     return Scaffold(
       backgroundColor: Cols.divider,
@@ -54,11 +65,12 @@ class Login extends StatelessWidget {
 
               Card(
                 margin: const EdgeInsets.symmetric(vertical: 9),
-                child: const Customtextfield(), 
+                child: const Customtextfield(),
               ),
 
               Customelevent(
                 push: () {
+                  showPrimaryTopSnack(context, 'Hooker cookerga hush kelibsiz');
                   provider.login(context, () {
                     Navigator.pushReplacement(
                       context,

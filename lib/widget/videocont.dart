@@ -1,9 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hooker_cooker/provider/boshlashprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
-// BoshlashProvider joylashgan faylni import qilasiz:
-// import 'boshlash_provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class Videocont extends StatelessWidget {
   final dynamic model;
@@ -11,11 +11,20 @@ class Videocont extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Endi BoshlashProvider'ni chaqirib olamiz
     final provider = context.watch<BoshlashProvider>();
 
     final String? imageUrl = model?.videoUrl;
     final bool imagebor = imageUrl != null && imageUrl.isNotEmpty;
+
+
+    ImageProvider? finalImageProvider;
+    if (imagebor) {
+      if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+        finalImageProvider = NetworkImage(imageUrl);
+      } else {
+        finalImageProvider = FileImage(File(imageUrl));
+      }
+    }
 
     return Stack(
       children: [
@@ -35,11 +44,8 @@ class Videocont extends StatelessWidget {
                       Cols.dark,
                     ],
                   ),
-            image: imagebor
-                ? DecorationImage(
-                    image: NetworkImage(imageUrl),
-                    fit: BoxFit.cover,
-                  )
+            image: imagebor && finalImageProvider != null
+                ? DecorationImage(image: finalImageProvider, fit: BoxFit.cover)
                 : null,
           ),
           child: !imagebor
@@ -48,6 +54,8 @@ class Videocont extends StatelessWidget {
                 )
               : null,
         ),
+
+        
         Positioned(
           top: 5,
           left: 20,
@@ -63,18 +71,37 @@ class Videocont extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                // Ulashish tugmasi
                 GestureDetector(
                   onTap: () {
-                    // Ulashish kodi
+                    final imagepath = model.videoUrl;
+
+                    if (imagepath != null && imagepath.isNotEmpty) {
+                      // Agar internet havolasi bo'lsa
+                      if (imagepath.startsWith('http://') ||
+                          imagepath.startsWith('https://')) {
+                        // ignore: deprecated_member_use
+                        Share.share(
+                          "Taom nomi: ${model.nomi}\nTaom turi: ${model.turi}\nKo'rish uchun havola: $imagepath",
+                        );
+                      } else {
+                        // ignore: deprecated_member_use
+                        Share.shareXFiles([XFile(imagepath)], text: model.nomi);
+                      }
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Ulashish uchun ma'lumot mavjud emas"),
+                        ),
+                      );
+                    }
                   },
                   child: CircleAvatar(
                     backgroundColor: Cols.orange,
-                    child: const Icon(Icons.share),
+                    child: const Icon(Icons.share, color: Colors.white),
                   ),
                 ),
                 const SizedBox(width: 8),
-                // Yurak tugmasi (BoshlashProvider orqali ishlaydi)
+                // Yurak tugmasi
                 GestureDetector(
                   onTap: () {
                     provider.yurakniBoshqarish(model);

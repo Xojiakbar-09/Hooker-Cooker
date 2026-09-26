@@ -30,7 +30,6 @@ class Customgridview extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           final ovqat = provider.ovqatlar[index];
-
           return GestureDetector(
             onTap: () {
               Navigator.push(
