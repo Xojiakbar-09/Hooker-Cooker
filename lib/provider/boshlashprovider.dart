@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class BoshlashProvider extends ChangeNotifier {
-  // 1. Videocont uchun yurak holati
   void yurakniBoshqarish(dynamic model) {
     if (model != null) {
       model.yurak = !model.yurak;

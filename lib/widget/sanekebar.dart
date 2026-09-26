@@ -14,15 +14,15 @@ void showErrorTopSnackBar(BuildContext context, String message) {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           decoration: BoxDecoration(
-            color: const Color(0xFF1E232D), // To'q fon
+            color: const Color(0xFF1E232D), 
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: const Color(0xFFFF3B30).withAlpha(100), // Qizil chegara
+              color: const Color(0xFFFF3B30).withAlpha(100), 
               width: 1.2,
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFFFF3B30).withAlpha(40), // Qizil glow
+                color: const Color(0xFFFF3B30).withAlpha(40),
                 blurRadius: 16,
                 offset: const Offset(0, 4),
               ),
@@ -30,7 +30,6 @@ void showErrorTopSnackBar(BuildContext context, String message) {
           ),
           child: Row(
             children: [
-              // 1. Xatolik ikonkasi (Qizil fonda)
               Container(
                 padding: const EdgeInsets.all(7),
                 decoration: BoxDecoration(
@@ -38,14 +37,13 @@ void showErrorTopSnackBar(BuildContext context, String message) {
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
-                  Icons.error_outline_rounded, // Yoki Icons.cancel_rounded
+                  Icons.error_outline_rounded, 
                   color: Color(0xFFFF3B30),
                   size: 20,
                 ),
               ),
               const SizedBox(width: 12),
 
-              // 2. Xatolik xabari matni
               Expanded(
                 child: Text(
                   message,
@@ -68,7 +66,6 @@ void showErrorTopSnackBar(BuildContext context, String message) {
 
   overlay.insert(overlayEntry);
 
-  // 3 soniyadan keyin avtomatik yopilish
   Future.delayed(const Duration(seconds: 3), () {
     if (overlayEntry.mounted) {
       overlayEntry.remove();

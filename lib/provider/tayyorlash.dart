@@ -10,7 +10,6 @@ class TayyorlashProvider extends ChangeNotifier {
     pageController = PageController();
   }
 
-  // Sahifa holatini nollash
   void reset() {
     _correctPage = 0;
     if (pageController.hasClients) {
@@ -32,7 +31,7 @@ class TayyorlashProvider extends ChangeNotifier {
       );
     } else {
       onFinish();
-      reset(); // Tugaganda holatni nollab qo'yamiz
+      reset(); 
     }
   }
 
@@ -43,7 +42,7 @@ class TayyorlashProvider extends ChangeNotifier {
         curve: Curves.easeInOut,
       );
     } else {
-      reset(); // Chiqishda ham holatni nollaymiz
+      reset(); 
       Navigator.pop(context);
     }
   }

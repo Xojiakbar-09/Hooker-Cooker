@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 Widget buildRetseptImage(String imagePath) {
   final file = File(imagePath);
 
-  // Fayl mavjud va yo'li bo'sh emasligini tekshiramiz
   if (imagePath.isNotEmpty && file.existsSync()) {
     return Image.file(
       file,
@@ -13,7 +12,6 @@ Widget buildRetseptImage(String imagePath) {
       fit: BoxFit.cover,
     );
   } else {
-    // Rasm topilmasa yoki yo'q bo'lsa zaxira (placeholder) ko'rsatamiz
     return Container(
       width: double.infinity,
       height: 200,

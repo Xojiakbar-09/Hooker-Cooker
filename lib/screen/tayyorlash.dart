@@ -5,7 +5,6 @@ import 'package:hooker_cooker/screen/mainscrren.dart';
 import 'package:hooker_cooker/widget/taymer.dart';
 import 'package:hooker_cooker/widget/tayorqadam.dart';
 import 'package:hooker_cooker/widget/tayyorlashappbar.dart';
-import 'package:hooker_cooker/widget/tugaganda.dart';
 import 'package:provider/provider.dart';
 
 class Tayyorlash extends StatefulWidget {

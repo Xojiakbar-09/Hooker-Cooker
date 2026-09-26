@@ -49,7 +49,6 @@ class Customtextfield extends StatelessWidget {
 
           Divider(height: 1, color: Cols.canvas),
 
-          // 2. PAROL MAYDONI
           TextFormField(
             controller: provider.passwordController,
             validator: provider.validatePassword,

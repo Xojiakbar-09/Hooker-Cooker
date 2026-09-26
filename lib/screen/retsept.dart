@@ -70,7 +70,6 @@ class _RetseptState extends State<Retsept> {
               ),
               const SizedBox(height: 8),
 
-              // Controller ulandi va sintaktik xato to'g'rilandi
               Stepqoshish(
                 controller: provider.stepController,
                 onAdd: (newStep) {

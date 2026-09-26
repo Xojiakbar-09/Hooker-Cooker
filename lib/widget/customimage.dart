@@ -16,7 +16,6 @@ class CustomImage extends StatelessWidget {
     required this.onRemoveImage,
   });
 
-  // Galereya yoki Kamerani tanlash
   void _showPickerDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -54,7 +53,6 @@ class CustomImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // AGA RASM TANLANGAN BO'LSA — Rasmni o'zini va O'chirish tugmasini ko'rsatamiz
     if (selectedImage != null) {
       return Stack(
         children: [
@@ -86,7 +84,6 @@ class CustomImage extends StatelessWidget {
       );
     }
 
-    // AGA RASM TANLANMAGAN BO'LSA — Sizning asl dizayningiz
     return DottedBorder(
       options: RoundedRectDottedBorderOptions(
         color: Cols.primery,

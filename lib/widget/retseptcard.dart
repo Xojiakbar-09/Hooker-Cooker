@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooker_cooker/provider/retseptprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
-// RetseptProvider joylashgan faylni import qilasiz:
-// import 'retsept_provider.dart';
 
 class Retseptcard extends StatelessWidget {
   const Retseptcard({super.key});
@@ -162,7 +160,7 @@ class Retseptcard extends StatelessWidget {
                             Expanded(
                               child: TextField(
                                 controller: provider
-                                    .vaqtiController, // Providerdagi vaqt controlleri
+                                    .vaqtiController, 
                                 keyboardType: TextInputType.number,
                                 cursorColor: Cols.dark,
                                 cursorWidth: 1,

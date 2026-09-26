@@ -4,7 +4,6 @@ import 'package:hooker_cooker/consts/colors/appcolor.dart';
 import 'package:hooker_cooker/gen/assets.gen.dart';
 import 'package:hooker_cooker/provider/retseptprovider.dart';
 import 'package:hooker_cooker/screen/pishirishboshlash.dart';
-import 'package:hooker_cooker/screen/tayyorlash.dart';
 import 'package:hooker_cooker/widget/kalleysiyaimage.dart';
 import 'package:provider/provider.dart';
 

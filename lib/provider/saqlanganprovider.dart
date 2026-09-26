@@ -10,7 +10,6 @@ class SaqlanganProvider extends ChangeNotifier {
     }
   }
 
-  // Saqlangan (yuragi true bo'lgan) ovqatlarni olish
   List get favouriteList {
     return OvqatMock.mockOvqatlar
         .where((item) => item.yurak == true)

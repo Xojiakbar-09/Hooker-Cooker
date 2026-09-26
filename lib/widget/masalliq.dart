@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooker_cooker/provider/retseptprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
-// RetseptProvider joylashgan faylni import qilasiz:
-// import 'retsept_provider.dart';
 
 class MasalliqlarCard extends StatelessWidget {
   const MasalliqlarCard({super.key});

@@ -4,12 +4,10 @@ import 'package:hooker_cooker/widget/sanekebar.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class LoginProvider extends ChangeNotifier {
-  // Kontrollerlar va Form Key
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  // Parolni yashirish/ko'rsatish holati
   bool _isObscure = true;
   bool get isObscure => _isObscure;
 
@@ -18,7 +16,6 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Tezkor sozlamalar holatlari
   bool _isDark = false;
   bool get isDark => _isDark;
 
@@ -37,14 +34,12 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Sahifa ochilganda GetStorage'dan sozlamalarni o'qish (Vaqtinchalik kirishni true qilmaydi)
   void initStorage() {
     _isDark = GetStorage().read('isDark') ?? false;
     _isBell = GetStorage().read('isBell') ?? false;
     notifyListeners();
   }
 
-  // Email validatsiyasi
   String? validateEmail(String? value) {
     if (value == null || value.trim().isEmpty) {
       return 'Email manzilini kiriting';
@@ -57,7 +52,6 @@ class LoginProvider extends ChangeNotifier {
     return null;
   }
 
-  // Parol validatsiyasi
   String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'Parolni kiriting';
@@ -68,17 +62,13 @@ class LoginProvider extends ChangeNotifier {
     return null;
   }
 
-  // Tizimga kirish tugmasi bosilganda
   void login(BuildContext context, VoidCallback onSuccess) {
-    // 1. Agar forma validatsiyadan to'liq o'tsa
     if (formKey.currentState?.validate() ?? false) {
-      // Faqat login muvaffaqiyatli bo'lganda kirish va email saqlanadi
       GetStorage().write('kirish', true);
       GetStorage().write('user_email', emailController.text.trim());
 
-      onSuccess(); // Asosiy ekranga o'tkazish
+      onSuccess();
     }
-    // 2. Formada xatolik bo'lsa Top Error SnackBar ko'rsatiladi
     else {
       final email = emailController.text.trim();
       final password = passwordController.text;
@@ -110,21 +100,17 @@ class LoginProvider extends ChangeNotifier {
     super.dispose();
   }
 
-  // LoginProvider sinfi ichiga:
   Future<void> requestAppPermissions() async {
-    // 1. Kamera ruxsati
     var cameraStatus = await Permission.camera.status;
     if (!cameraStatus.isGranted) {
       await Permission.camera.request();
     }
 
-    // 2. Galereya / Rasmlar ruxsati (Android 13+ va iOS uchun)
     var photosStatus = await Permission.photos.status;
     if (!photosStatus.isGranted) {
       await Permission.photos.request();
     }
 
-    // 3. Eski Android versiyalari uchun xotira ruxsati
     var storageStatus = await Permission.storage.status;
     if (!storageStatus.isGranted) {
       await Permission.storage.request();

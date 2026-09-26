@@ -6,15 +6,12 @@ import 'package:hooker_cooker/consts/colors/appcolor.dart';
 import 'package:hooker_cooker/gen/assets.gen.dart';
 import 'package:hooker_cooker/widget/customcard.dart';
 import 'package:hooker_cooker/widget/customdropdawn.dart';
-// LoginProvider faylini import qilasiz:
-// import 'login_provider.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Provider'ni chaqirib olamiz
     final provider = context.watch<LoginProvider>();
 
     return Scaffold(

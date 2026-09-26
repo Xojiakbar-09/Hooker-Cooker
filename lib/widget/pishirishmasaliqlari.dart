@@ -30,7 +30,6 @@ class Pishirishmasaliqlari extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // 1. Vaqt
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -65,7 +64,6 @@ class Pishirishmasaliqlari extends StatelessWidget {
           ),
           Container(height: 28, width: 1, color: Colors.grey.shade200),
 
-          // 2. Daraja
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -92,7 +90,6 @@ class Pishirishmasaliqlari extends StatelessWidget {
           ),
           Container(height: 28, width: 1, color: Colors.grey.shade200),
 
-          // 3. Porsiya
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,

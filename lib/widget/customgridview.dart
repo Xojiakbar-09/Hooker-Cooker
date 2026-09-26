@@ -11,7 +11,6 @@ class Customgridview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Provider'ni kuzatib turamiz
     final provider = context.watch<HomeProvider>();
 
     return SizedBox(
@@ -104,13 +103,11 @@ class Customgridview extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // Yurakcha (Favorite) tugmasi - Provider orqali boshqariladi
                       Positioned(
                         top: 8,
                         right: 8,
                         child: GestureDetector(
                           onTap: () {
-                            // Provider'dagi funksiya chaqiriladi
                             context.read<HomeProvider>().toggleFavorite(index);
                           },
                           child: CircleAvatar(

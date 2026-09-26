@@ -14,7 +14,6 @@ class Ingredient {
     this.isChecked = false,
   });
 
-  // SQFlite bazasiga saqlash uchun Map'ga o'tkazish
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -24,13 +23,11 @@ class Ingredient {
     };
   }
 
-  // Bazadan o'qib olish uchun Map'dan obyektga o'tkazish (Null-safe)
   factory Ingredient.fromMap(Map<String, dynamic> map) {
     return Ingredient(
       id: map['id'] as int?,
       name: map['name']?.toString() ?? '',
       amount: map['amount']?.toString() ?? '',
-      // 💡 Har qanday null yoki boshqa turdagi qiymatni xavfsiz bool'ga o'tkazish:
       isChecked: map['isChecked'] == 1 || map['isChecked'] == true,
     );
   }

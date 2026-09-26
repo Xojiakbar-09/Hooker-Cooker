@@ -76,7 +76,6 @@ class Videocont extends StatelessWidget {
                     final imagepath = model.videoUrl;
 
                     if (imagepath != null && imagepath.isNotEmpty) {
-                      // Agar internet havolasi bo'lsa
                       if (imagepath.startsWith('http://') ||
                           imagepath.startsWith('https://')) {
                         // ignore: deprecated_member_use
@@ -101,7 +100,6 @@ class Videocont extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 8),
-                // Yurak tugmasi
                 GestureDetector(
                   onTap: () {
                     provider.yurakniBoshqarish(model);

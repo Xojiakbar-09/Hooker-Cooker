@@ -45,7 +45,6 @@ class AddRecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () async {
             final provider = context.read<RetseptProvider>();
 
-            // Xatolik matni olinadi (agar null bo'lsa xatolik yo'q)
             String? xatolik = await provider.retseptniSqflitegaSaqlash();
             if (!context.mounted) return;
 
@@ -54,7 +53,6 @@ class AddRecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
               if (!context.mounted) return;
               Navigator.pop(context);
             } else {
-              // Aniq yuz bergan xatolik ko'rsatiladi
               showErrorTopSnackBar(context, xatolik);
             }
           },

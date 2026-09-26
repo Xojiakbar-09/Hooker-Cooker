@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart'
-    show WidgetsFlutterBinding, runApp, Widget, BuildContext, MaterialApp, NavigatorState;
+    show
+        WidgetsFlutterBinding,
+        runApp,
+        Widget,
+        BuildContext,
+        MaterialApp,
+        NavigatorState;
 // ignore: implementation_imports
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get_storage/get_storage.dart';
@@ -14,8 +20,6 @@ import 'package:hooker_cooker/screen/mainscrren.dart';
 import 'package:hooker_cooker/screen/splesh.dart';
 import 'package:hooker_cooker/service/internetserver.dart';
 import 'package:provider/provider.dart';
-
-
 
 final GlobalKey<NavigatorState> navigatorkey = GlobalKey();
 
@@ -35,11 +39,10 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-
   @override
   void initState() {
     super.initState();
-       Internetsarves.lisenConnetion();
+    Internetsarves.lisenConnetion();
   }
 
   @override
@@ -56,13 +59,11 @@ class _MainAppState extends State<MainApp> {
         ChangeNotifierProvider(create: (_) => TayyorlashProvider()),
       ],
       child: MaterialApp(
-        navigatorKey: navigatorkey ,
+        navigatorKey: navigatorkey,
         title: 'Hooker cooker',
         theme: Apptheme.light,
         debugShowCheckedModeBanner: false,
-        home: 
-        // Login()
-        tekshiruv ? MainScreen() : SplashPage(),
+        home: tekshiruv ? MainScreen() : SplashPage(),
       ),
     );
   }

@@ -1,27 +1,24 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:hooker_cooker/model/db_helper.dart'; // SQFlite helper faylingiz
+import 'package:hooker_cooker/model/db_helper.dart'; 
 import 'package:hooker_cooker/model/ingredient.dart';
 import 'package:hooker_cooker/model/retseptmodel.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RetseptProvider extends ChangeNotifier {
   RetseptProvider() {
-    fetchRetseptlar(); // Ilova yoqilishi bilan bazadagi retseptlarni yuklab oladi
+    fetchRetseptlar(); 
   }
 
-  // SQFlite'dan o'qib olingan retseptlar ro'yxati
   List<RetseptModel> _retseptlar = [];
   List<RetseptModel> get retseptlar => _retseptlar;
 
-  // Masalliqlar va Qadamlar ro'yxati (Vaqtinchalik formadagi)
   final List<Ingredient> _ingredients = [];
   List<Ingredient> get ingredients => _ingredients;
 
   final List<String> _steps = [];
   List<String> get steps => _steps;
 
-  // Controller'lar
   final TextEditingController retseptNomiController = TextEditingController();
   final TextEditingController masalliqNomiController = TextEditingController();
   final TextEditingController masalliqMiqdoriController =
@@ -29,7 +26,6 @@ class RetseptProvider extends ChangeNotifier {
   final TextEditingController vaqtiController = TextEditingController();
   final TextEditingController stepController = TextEditingController();
 
-  // Porsiya va Rasm holati
   int _porsiya = 1;
   int get porsiya => _porsiya;
 
@@ -47,7 +43,6 @@ class RetseptProvider extends ChangeNotifier {
     }
   }
 
-  // 2. FORMANI TO'LIQ TOZALASH
   void clearForm() {
     _ingredients.clear();
     _steps.clear();
@@ -87,7 +82,6 @@ class RetseptProvider extends ChangeNotifier {
     final amount = masalliqMiqdoriController.text.trim();
 
     if (name.isNotEmpty && amount.isNotEmpty) {
-      // Modelda name va amount ishlatilgani uchun shunday beramiz
       _ingredients.add(Ingredient(name: name, amount: amount));
       masalliqNomiController.clear();
       masalliqMiqdoriController.clear();
@@ -102,7 +96,6 @@ class RetseptProvider extends ChangeNotifier {
     }
   }
 
-  // Qadam qo'shish (Controller orqali avtomatik o'qiydi)
   void stepQoshish(String newStep) {
     final stepText = stepController.text.trim();
     if (stepText.isNotEmpty) {

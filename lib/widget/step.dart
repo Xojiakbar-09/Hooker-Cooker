@@ -33,14 +33,14 @@ class Stepcard extends StatelessWidget {
             width: 28,
             height: 28,
             decoration: const BoxDecoration(
-              color: Color(0xFFFFECE5), // Och rangli fon
+              color: Color(0xFFFFECE5), 
               shape: BoxShape.circle,
             ),
             alignment: Alignment.center,
             child: Text(
               '$stepNumber',
               style: const TextStyle(
-                color: Color(0xFFFF5200), // To'q sariq raqam rangi
+                color: Color(0xFFFF5200), 
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),
@@ -56,7 +56,7 @@ class Stepcard extends StatelessWidget {
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: Colors.black87,
-                height: 1.4, // Qatorlar orasidagi masofa
+                height: 1.4, 
               ),
             ),
           ),

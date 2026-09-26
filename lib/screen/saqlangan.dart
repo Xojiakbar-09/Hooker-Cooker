@@ -4,15 +4,12 @@ import 'package:hooker_cooker/provider/saqlanganprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
 import 'package:hooker_cooker/gen/assets.gen.dart';
-// SaqlanganProvider faylini import qilasiz:
-// import 'saqlangan_provider.dart';
 
 class Saqlangan extends StatelessWidget {
   const Saqlangan({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Provider'ni chaqirib olamiz
     final provider = context.watch<SaqlanganProvider>();
     final favourite = provider.favouriteList;
 

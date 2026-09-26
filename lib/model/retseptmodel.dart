@@ -38,7 +38,6 @@ class RetseptModel {
       'nomi': nomi,
       'portsiya': portsiya,
       'vaqt': vaqt,
-      // List'larni SQFlite saqlay oladigan JSON matniga o'giramiz
       'masalliqlar': jsonEncode(masalliqlar.map((e) => e.toMap()).toList()),
       'qadamlar': jsonEncode(qadamlar),
     };

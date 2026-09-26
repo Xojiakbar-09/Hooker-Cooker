@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooker_cooker/provider/boshlashprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
-// BoshlashProvider faylini import qilasiz:
-// import 'boshlash_provider.dart';
 
 class Masaliqlartab extends StatelessWidget {
   final dynamic model;

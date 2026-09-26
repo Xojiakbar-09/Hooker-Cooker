@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooker_cooker/consts/colors/appcolor.dart';
-import 'package:hooker_cooker/provider/boshlashprovider.dart';
 import 'package:hooker_cooker/screen/tayyorlash.dart';
 import 'package:hooker_cooker/screen/video.dart';
 import 'package:hooker_cooker/widget/masaliqlartab.dart';
 import 'package:hooker_cooker/widget/pisheleventbuten.dart';
 import 'package:hooker_cooker/widget/pishirishmasaliqlari.dart';
 import 'package:hooker_cooker/widget/videocont.dart';
-import 'package:provider/provider.dart';
-// BoshlashProvider faylini import qilasiz:
-// import 'boshlash_provider.dart';
 
 class Pishirishniboshlash extends StatelessWidget {
   final dynamic model;
@@ -67,7 +63,6 @@ class Pishirishniboshlash extends StatelessWidget {
                         },
                         child: Text('Video'),
                       ),
-                      // Tasdiqlash tugmasi
                       TextButton(
                         onPressed: () {
                        

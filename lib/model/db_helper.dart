@@ -27,7 +27,6 @@ class DatabaseHelper {
   }
 
   Future<void> _createDB(Database db, int version) async {
-    // 1. Masalliqlar jadvali
     await db.execute('''
       CREATE TABLE ingredients (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,7 +35,6 @@ class DatabaseHelper {
       )
     ''');
 
-    // 2. RETSEPTLAR JADVALI (Shu yetishmayotgan edi)
     await db.execute('''
       CREATE TABLE recipes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -50,7 +48,6 @@ class DatabaseHelper {
     ''');
   }
 
-  // --- MASALLIQLAR UCHUN METODLAR ---
   
   Future<int> insertIngredient(Ingredient ingredient) async {
     final db = await instance.database;
@@ -72,15 +69,11 @@ class DatabaseHelper {
     );
   }
 
-  // --- RETSEPTLAR UCHUN YANGI METODLAR (Xatoni yo'qotadi) ---
-
-  // Retseptni bazaga saqlash
   Future<int> insertRecipe(RetseptModel recipe) async {
     final db = await instance.database;
     return await db.insert('recipes', recipe.toMap());
   }
 
-  // Barcha saqlangan retseptlarni o'qib olish
   Future<List<RetseptModel>> getSavedRecipes() async {
     final db = await instance.database;
     final result = await db.query('recipes');
