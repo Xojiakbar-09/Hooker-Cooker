@@ -153,8 +153,8 @@ class RetseptProvider extends ChangeNotifier {
 
       return null;
     } catch (e) {
-      debugPrint("Saqlashda xatolik yuz berdi: $e");
-      return "Saqlashda xatolik yuz berdi: $e";
+      debugPrint("Saqlashda xatolik yuz berdi");
+      return "Saqlashda xatolik yuz berdi";
     }
   }
 

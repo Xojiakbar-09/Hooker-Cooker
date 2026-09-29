@@ -11,6 +11,7 @@ class RetseptModel {
   final String vaqt;
   final List<Ingredient> masalliqlar;
   final List<String> qadamlar;
+  final List<int>? qadamlarVaqti;
 
   bool get sersa => yurak; 
   set sersa(bool value) => yurak = value;
@@ -31,9 +32,10 @@ class RetseptModel {
     required this.masalliqlar,
     required this.qadamlar,
     required this.audio,
-    required this.yurak, 
+    required this.yurak,
+     this.qadamlarVaqti, 
   });
-
+  
   Map<String, dynamic> toMap() {
     return {
       if (id != null) 'id': id,

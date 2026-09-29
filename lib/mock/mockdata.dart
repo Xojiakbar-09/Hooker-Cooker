@@ -2,21 +2,20 @@ class OvqatMock {
   static final List<Ovqat> mockOvqatlar = [
     // 1. Toshkentcha to'y oshi
     Ovqat(
-    audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video:
-          'https://www.youtube.com/watch?v=p96kbSQVX8E&pp=ygUDb3No0gcJCS8MAYcqIYzv',
+          'https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-delicious-pizza-42861-large.mp4', 
       yurak: false,
       nomi: "Toshkentcha to'y oshi",
       turi: "Milliy taom",
       insonga: "2",
       daqiqa: 120.0,
       reyting: 4.9,
-
       daraja: "Qiyin",
       discribtion:
           "O'zbek milliy oshxonasining shoh taomi, bayram va to'ylarning ko'rki.",
       videoUrl:
-          "https://tse2.mm.bing.net/th/id/OIP.Px01rF3Qhg8pp0KUCvFTYgHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+          "https://assets.mixkit.co/videos/preview/mixkit-cutting-vegetables-on-a-wooden-board-42880-large.mp4",
       masalliqlar: [
         Masalliq(isChecked: false, nomi: "Lazer guruchi", miqdori: "1 kg"),
         Masalliq(
@@ -39,19 +38,19 @@ class OvqatMock {
         "Guruchni yuvib, zirvak ustiga tekis solamiz.",
         "Suvi tortilgach, oshni damlaymiz va 45 daqiqa pishiramiz.",
       ],
+      qadamlarVaqti: [10, 15, 35, 15, 45], // Umumiy: 120 daqiqa
     ),
     // 2. An'anaviy Manti
     Ovqat(
-        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video:
-          'https://www.bing.com/ck/a?!&&p=ae77d30221a4c7426e5a172859b5d66bab3445b2178c237f7a78b805859926c5JmltdHM9MTc5MDIwODAwMA&ptn=3&ver=2&hsh=4&fclid=1f175185-873e-62a8-39da-4698861f638d&psq=manti+taom+video+&u=a1aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj1qVlJMbHhhN2l6MA&ntb=1',
+          'https://assets.mixkit.co/videos/preview/mixkit-pouring-sauce-on-a-cooked-dish-42878-large.mp4',
       yurak: false,
       nomi: "An'anaviy Manti",
       turi: "Milliy taom",
       insonga: "4",
       daqiqa: 90.0,
       reyting: 4.8,
-
       daraja: "Qiyin",
       discribtion:
           "Bug'da pishiriladigan, sershira va mazali go'shtli xamir ovqat.",
@@ -74,18 +73,18 @@ class OvqatMock {
         "Xamirni yoyib, kvadratchalar kesamiz va qiymani solib tugamiz.",
         "Mantikaskonga terib, 45 daqiqa bug'da pishiramiz.",
       ],
+      qadamlarVaqti: [20, 10, 15, 45], // Umumiy: 90 daqiqa
     ),
     // 3. Uycha Lag'mon
     Ovqat(
-        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-      video: '',
+      audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      video: 'https://v.ftcdn.net/02/92/25/68/700_F_292256868_2H3N2s992uIn3A2F4P2mNf.mp4',
       yurak: false,
       nomi: "Uyg'urcha Lag'mon",
       turi: "Suyuq ovqat",
       insonga: "2",
       daqiqa: 80.0,
       reyting: 4.7,
-
       daraja: "Qiyin",
       discribtion:
           "Cho'zilma xamir va maxsus tansiq sabzavotli qayla uyg'unligi.",
@@ -113,10 +112,11 @@ class OvqatMock {
         "Biroz suv quyib qaylani pishirib olamiz.",
         "Pishgan xamir ustiga qayla solib tortiq qilamiz.",
       ],
+      qadamlarVaqti: [25, 20, 15, 15, 5], // Umumiy: 80 daqiqa
     ),
     // 4. Qarsildoq Somsa
     Ovqat(
-        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Qarsildoq Somsa",
@@ -124,7 +124,6 @@ class OvqatMock {
       insonga: "1",
       daqiqa: 70.0,
       reyting: 4.9,
-
       daraja: "Qiyin",
       discribtion:
           "Tandirda yoki pechda yopiladigan qat-qat va sershira somsa.",
@@ -152,10 +151,11 @@ class OvqatMock {
         "Xamirni zuvalachalarga bo'lib, yoyib, qiyma solib tugamiz.",
         "Ustiga tuxum surtib, kunjut sepib, 200 gradusda 35-40 daqiqa pishiramiz.",
       ],
+      qadamlarVaqti: [15, 10, 10, 15, 20], // Tayyorlash qadamlari vaqti (sovutish vaxtini hisobga olмагаanda pishirish jarayoni 70 daqiqaga moslandi)
     ),
     // 5. Mastava
     Ovqat(
-        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Mastava",
@@ -163,7 +163,6 @@ class OvqatMock {
       insonga: "5",
       daqiqa: 50.0,
       reyting: 4.6,
-
       daraja: "O'rtacha",
       discribtion:
           "To'yimli, guruch va sabzavotlardan tayyorlanadigan milliy sho'rva.",
@@ -195,10 +194,11 @@ class OvqatMock {
         "Suv qaynagach, yuvilgan guruchni solamiz.",
         "Guruch pishgach, ko'katlar sepib olovni o'chiramiz va qatiq bilan tortamiz.",
       ],
+      qadamlarVaqti: [10, 10, 10, 15, 5], // Umumiy: 50 daqiqa
     ),
     // 6. Sezar Salati
     Ovqat(
-        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Sezar Salati",
@@ -206,7 +206,6 @@ class OvqatMock {
       insonga: "2",
       daqiqa: 25.0,
       reyting: 4.5,
-
       daraja: "Oson",
       discribtion:
           "Tovuq go'shti, suxari va maxsus sous bilan tayyorlanadigan yengil salat.",
@@ -234,10 +233,11 @@ class OvqatMock {
         "Suxari va maydalangan pishloqni sepamiz.",
         "Eng ustidan Sezar sousini quyamiz va tortiq qilamiz.",
       ],
+      qadamlarVaqti: [12, 5, 3, 3, 2], // Umumiy: 25 daqiqa
     ),
     // 7. Pepperoni Pitsa
     Ovqat(
-        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Pepperoni Pitsa",
@@ -245,7 +245,6 @@ class OvqatMock {
       insonga: "3",
       daqiqa: 35.0,
       reyting: 4.8,
-
       daraja: "O'rtacha",
       discribtion:
           "Italiya uslubidagi achchiqqina kolbasa va erigan pishloqli pitsa.",
@@ -277,10 +276,11 @@ class OvqatMock {
         "Ustiga pepperoni kolbasa parraklarini terib chiqamiz.",
         "220 gradus qizdirilgan pechda 10-15 daqiqa davomida pishiramiz.",
       ],
+      qadamlarVaqti: [10, 3, 4, 3, 15], // Umumiy: 35 daqiqa
     ),
     // 8. Qozon Kabob
     Ovqat(
-        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Qozon Kabob",
@@ -288,7 +288,6 @@ class OvqatMock {
       insonga: "4",
       daqiqa: 60.0,
       reyting: 4.9,
-
       daraja: "O'rtacha",
       discribtion:
           "Qozonda qovurilib, o'z sharbatida dimlanadigan xushbo'y go'sht.",
@@ -315,10 +314,11 @@ class OvqatMock {
         "Yog'ning ko'p qismini to'kib tashlab, qozonga avval go'shtni, ustidan kartoshkani solamiz.",
         "Yarim piyola suv quyib, qozon qopqog'ini yopamiz va past olovda 45 daqiqa dimlaymiz.",
       ],
+      qadamlarVaqti: [5, 5, 3, 2, 45], // Umumiy: 60 daqiqa
     ),
     // 9. Norin
     Ovqat(
-        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Norin",
@@ -326,7 +326,6 @@ class OvqatMock {
       insonga: "8",
       daqiqa: 150.0,
       reyting: 4.9,
-
       daraja: "Qiyin",
       discribtion:
           "Qaynatma go'sht va yupqa yoyilib kesilgan xamirdan tayyorlanadigan taom.",
@@ -354,10 +353,11 @@ class OvqatMock {
         "Pishgan sovigan go'sht va qazini ham mayda somoncha qilib to'g'raymiz.",
         "To'g'ralgan xamir, go'sht, piyoz va murchni aralashtirib laganga solamiz.",
       ],
+      qadamlarVaqti: [90, 20, 20, 15, 5], // Umumiy: 150 daqiqa
     ),
     // 10. Klub Sendvich
     Ovqat(
-        audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       video: '',
       yurak: false,
       nomi: "Klub Sendvich",
@@ -365,7 +365,6 @@ class OvqatMock {
       insonga: "1",
       daqiqa: 15.0,
       reyting: 4.4,
-
       daraja: "Oson",
       discribtion:
           "Non, tovuq go'shti, pomidor va maxsus sous qatlamli tezkor nonushta.",
@@ -393,6 +392,7 @@ class OvqatMock {
         "Uchinchi non bilan yopib, ustidan biroz bosamiz.",
         "Diagonaliga kesib, orasiga cho'pchaq tiqib tortamiz.",
       ],
+      qadamlarVaqti: [3, 4, 4, 2, 2], // Umumiy: 15 daqiqa
     ),
   ];
 }
@@ -422,6 +422,7 @@ class Ovqat {
   final String discribtion;
   final List<Masalliq> masalliqlar;
   final List<String> qadamlar;
+  final List<int> qadamlarVaqti; 
   final String videoUrl;
 
   Ovqat({
@@ -434,9 +435,10 @@ class Ovqat {
     required this.nomi,
     required this.masalliqlar,
     required this.qadamlar,
+    required this.qadamlarVaqti, 
     required this.videoUrl,
     required this.daraja,
     required this.video,
-     required this.audio,
+    required this.audio,
   });
 }

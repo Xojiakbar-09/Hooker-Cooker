@@ -16,6 +16,7 @@ import 'package:hooker_cooker/provider/loginpovider.dart';
 import 'package:hooker_cooker/provider/retseptprovider.dart';
 import 'package:hooker_cooker/provider/saqlanganprovider.dart';
 import 'package:hooker_cooker/provider/tayyorlash.dart';
+import 'package:hooker_cooker/screen/login.dart';
 import 'package:hooker_cooker/screen/mainscrren.dart';
 import 'package:hooker_cooker/screen/splesh.dart';
 import 'package:hooker_cooker/service/internetserver.dart';
@@ -63,7 +64,8 @@ class _MainAppState extends State<MainApp> {
         title: 'Hooker cooker',
         theme: Apptheme.light,
         debugShowCheckedModeBanner: false,
-        home: tekshiruv ? MainScreen() : SplashPage(),
+        home: 
+        tekshiruv ? MainScreen() : Login(),
       ),
     );
   }
